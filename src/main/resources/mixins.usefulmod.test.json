@@ -1,0 +1,9 @@
+{
+	"required": true,
+	"package": "nessiesson.usefulmod.mixins",
+	"refmap": "mixins.usefulmod.refmap.json",
+	"mixins": [
+		"MixinBlockPistonStructureHelper",
+		"MixinTeleportToPlayer"
+	]
+}
