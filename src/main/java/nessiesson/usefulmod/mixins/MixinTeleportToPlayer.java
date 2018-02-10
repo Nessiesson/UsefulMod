@@ -24,8 +24,7 @@ public abstract class MixinTeleportToPlayer implements ISpectatorMenuView, ISpec
 	@Shadow @Final private static Ordering<NetworkPlayerInfo> PROFILE_ORDER;
 
 	//Hackfix to allow spectated players to teleport to other specators.
-    @Inject(method = "Lnet/minecraft/client/gui/spectator/categories/TeleportToPlayer;<init>(Ljava/util/Collection;)V",
-            at = @At(value = "RETURN"))
+    @Inject(method = "<init>(Ljava/util/Collection;)V", at = @At(value = "RETURN"))
     private void onConstructSpectatorList(Collection<NetworkPlayerInfo> profiles, CallbackInfo ci) {
     	this.items.clear();
 	    for (NetworkPlayerInfo networkplayerinfo : PROFILE_ORDER.sortedCopy(profiles)) {
