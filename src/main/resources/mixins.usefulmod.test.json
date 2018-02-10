@@ -4,6 +4,7 @@
 	"refmap": "mixins.usefulmod.refmap.json",
 	"mixins": [
 		"MixinBlockPistonStructureHelper",
-		"MixinTeleportToPlayer"
+		"MixinTeleportToPlayer",
+		"MixinMinecraft"
 	]
 }
