@@ -11,7 +11,7 @@ public class LiteModUsefulMod implements Tickable {
 	@Override
 	public String getVersion() {
 		// TODO Auto-generated method stub
-		return "0.1";
+		return "@VERSION@";
 	}
 
 	@Override
