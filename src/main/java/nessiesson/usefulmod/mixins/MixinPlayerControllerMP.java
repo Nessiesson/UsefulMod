@@ -17,8 +17,8 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class MixinPlayerControllerMP {
 	// Client-side fix for instant mining ghost blocks.
 	@Inject(method = "clickBlock", at = @At(value = "INVOKE", shift = At.Shift.AFTER,
-			target = "Lnet/minecraft/block/Block;onBlockClicked(Lnet/minecraft/world/World;"
-					+ "Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/entity/player/EntityPlayer;)V"))
+			target = "Lnet/minecraft/client/multiplayer/PlayerControllerMP;"
+					+ "onPlayerDestroyBlock(Lnet/minecraft/util/math/BlockPos;)Z"))
 	private void onInstantMine(BlockPos loc, EnumFacing face, CallbackInfoReturnable<Boolean> cir) {
 		NetHandlerPlayClient connection = Minecraft.getMinecraft().getConnection();
 		connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(loc, face, EnumHand.MAIN_HAND, 0f, 0f, 0f));
