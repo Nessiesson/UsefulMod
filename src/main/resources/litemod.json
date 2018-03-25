@@ -3,6 +3,6 @@
 	"version": 0.3,
 	"mcversion": "1.12",
 	"mixinConfigs": [
-		"mixins.usefulmod.test.json"
+		"mixins.usefulmod.json"
 	]
 }

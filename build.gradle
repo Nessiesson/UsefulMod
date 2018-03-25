@@ -55,7 +55,7 @@ litemod {
         name = project.name
         mcversion = project.mcVersion
         description = "stuff."
-        mixinConfigs += "mixins.usefulmod.test.json"
+        mixinConfigs += "mixins.usefulmod.json"
 
     }
 }
@@ -68,5 +68,6 @@ jar {
 }
 
 runClient {
-    jvmArgs = "-Dmixin.debug=true"
+    jvmArgs "-Dmixin.debug=true"
 }
+
