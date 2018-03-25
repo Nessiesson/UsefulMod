@@ -4,6 +4,7 @@
 	"refmap": "mixins.usefulmod.refmap.json",
 	"mixins": [
 		"MixinMinecraft",
+		"MixinNetHandlerPlayerClient",
 		"MixinPlayerControllerMP",
 		"MixinTeleportToPlayer"
 	]
