@@ -63,8 +63,6 @@ litemod {
 jar {
     // The litemod task above generates the litemod.json dynamically, you can replace it with a resource if you want more control
     from litemod.outputs
-    baseName = archivesBaseName
-    classifier = null
 }
 
 runClient {
