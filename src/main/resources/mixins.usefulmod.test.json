@@ -3,7 +3,6 @@
 	"package": "nessiesson.usefulmod.mixins",
 	"refmap": "mixins.usefulmod.refmap.json",
 	"mixins": [
-		"MixinBlockPistonStructureHelper",
 		"MixinMinecraft",
 		"MixinPlayerControllerMP",
 		"MixinTeleportToPlayer"
