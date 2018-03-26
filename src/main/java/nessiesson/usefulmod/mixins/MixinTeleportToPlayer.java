@@ -1,6 +1,7 @@
 package nessiesson.usefulmod.mixins;
 
 import com.google.common.collect.Ordering;
+import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.client.gui.spectator.PlayerMenuObject;
 import net.minecraft.client.network.NetworkPlayerInfo;
 import org.spongepowered.asm.mixin.Final;
@@ -26,7 +27,11 @@ public abstract class MixinTeleportToPlayer implements ISpectatorMenuView, ISpec
 	//Hackfix to allow spectated players to teleport to other specators.
     @Inject(method = "<init>(Ljava/util/Collection;)V", at = @At(value = "RETURN"))
     private void onConstructSpectatorList(Collection<NetworkPlayerInfo> profiles, CallbackInfo ci) {
-    	this.items.clear();
+		if(!LiteModUsefulMod.config.isSpectatorToSpectatorEnabled) {
+			return;
+		}
+
+		this.items.clear();
 	    for (NetworkPlayerInfo networkplayerinfo : PROFILE_ORDER.sortedCopy(profiles)) {
 		    this.items.add(new PlayerMenuObject(networkplayerinfo.getGameProfile()));
 	    }

@@ -2,11 +2,16 @@ package nessiesson.usefulmod;
 
 import java.io.File;
 
+import com.mumfrey.liteloader.Configurable;
 import com.mumfrey.liteloader.Tickable;
 
+import com.mumfrey.liteloader.modconfig.ConfigPanel;
+import nessiesson.usefulmod.config.UsefulModConfig;
+import nessiesson.usefulmod.config.UsefulModConfigPanel;
 import net.minecraft.client.Minecraft;
 
-public class LiteModUsefulMod implements Tickable {
+public class LiteModUsefulMod implements Tickable, Configurable {
+	public static UsefulModConfig config = new UsefulModConfig();
 
 	@Override
 	public String getVersion() {
@@ -29,7 +34,7 @@ public class LiteModUsefulMod implements Tickable {
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
-		return "Useful mod";
+		return "UsefulMod";
 	}
 
 	@Override
@@ -38,4 +43,8 @@ public class LiteModUsefulMod implements Tickable {
 		
 	}
 
+	@Override
+	public Class<? extends ConfigPanel> getConfigPanelClass() {
+		return UsefulModConfigPanel.class;
+	}
 }

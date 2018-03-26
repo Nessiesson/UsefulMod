@@ -1,6 +1,7 @@
 package nessiesson.usefulmod.mixins;
 
 import nessiesson.usefulmod.ItemNBTHelper;
+import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,6 +22,10 @@ import java.util.List;
 public abstract class MixinItemStack {
 	@Inject(method = "getTooltip", at = @At(value = "RETURN"))
 	private void postGetTooltip(@Nullable EntityPlayer playerIn, ITooltipFlag advanced, CallbackInfoReturnable<List<String>> cir) {
+		if(!LiteModUsefulMod.config.isShulkerBoxDisplayEnabled) {
+			return;
+		}
+
 		ItemStack stack = (ItemStack)(Object)this;
 		if(!stack.isEmpty() && stack.getItem() instanceof ItemShulkerBox && stack.hasTagCompound()) {
 			NBTTagCompound cmp = ItemNBTHelper.getCompound(stack, "BlockEntityTag", true);

@@ -1,6 +1,7 @@
 package nessiesson.usefulmod.mixins;
 
 import nessiesson.usefulmod.ItemNBTHelper;
+import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.block.BlockShulkerBox;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Gui;
@@ -32,6 +33,10 @@ public abstract class MixinGuiScreen {
 
 	@Inject(method = "renderToolTip", at = @At(value = "RETURN"))
 	private void postRenderToolTip(ItemStack stack, int x, int y, CallbackInfo ci) {
+		if(!LiteModUsefulMod.config.isShulkerBoxDisplayEnabled) {
+			return;
+		}
+
 		if(stack != null && stack.getItem() instanceof ItemShulkerBox && stack.hasTagCompound() && GuiScreen.isShiftKeyDown()) {
 			NBTTagCompound cmp = ItemNBTHelper.getCompound(stack, "BlockEntityTag", true);
 			if(cmp != null && cmp.hasKey("Items", 9)) {

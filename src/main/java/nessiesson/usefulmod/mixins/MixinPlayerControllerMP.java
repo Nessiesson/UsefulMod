@@ -1,5 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
+import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
@@ -25,6 +26,10 @@ public abstract class MixinPlayerControllerMP {
 					+ "onPlayerDestroyBlock(Lnet/minecraft/util/math/BlockPos;)Z"),
 			locals = LocalCapture.CAPTURE_FAILHARD)
 	private void onInstantMine(BlockPos loc, EnumFacing face, CallbackInfoReturnable<Boolean> cir, IBlockState iblockstate) {
+		if(!LiteModUsefulMod.config.isMiningGhostblockFixEnabled) {
+			return;
+		}
+
 		Minecraft mc = Minecraft.getMinecraft();
 		if(iblockstate.getBlockHardness(mc.world, loc) > 0.0f) {
 			NetHandlerPlayClient connection = mc.getConnection();
@@ -34,6 +39,10 @@ public abstract class MixinPlayerControllerMP {
 
 	@ModifyConstant(method = "onPlayerDamageBlock", constant = @Constant(intValue = 5, ordinal = 1))
 	private int postBlockMine(int blockHitDelay) {
-		return 0;
+		if(LiteModUsefulMod.config.isTestEnabled) {
+			return 0;
+		} else {
+			return 5;
+		}
 	}
 }

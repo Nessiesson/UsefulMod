@@ -54,7 +54,7 @@ litemod {
         author = "nessie"
         name = project.name
         mcversion = project.mcVersion
-        description = "stuff."
+        description = "A very UsefulMod."
         mixinConfigs += "mixins.usefulmod.json"
 
     }

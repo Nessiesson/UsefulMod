@@ -1,5 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
+import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.entity.Entity;
@@ -18,6 +19,10 @@ public abstract class MixinNetHandlerPlayerClient {
 			target = "Lnet/minecraft/client/Minecraft;displayGuiScreen(Lnet/minecraft/client/gui/GuiScreen;)V"),
 			locals = LocalCapture.CAPTURE_FAILHARD)
 	private void onPlayerDeath(SPacketCombatEvent packetIn, CallbackInfo ci, Entity entity) {
+		if(!LiteModUsefulMod.config.isDeathLocationEnabled) {
+			return;
+		}
+
 		BlockPos pos = entity.getPosition();
 		Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new TextComponentString("You died @ " + pos.getX() + " " + pos.getY() + " " + pos.getZ()));
 	}
