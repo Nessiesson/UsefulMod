@@ -3,6 +3,7 @@
 	"package": "nessiesson.usefulmod.mixins",
 	"refmap": "mixins.usefulmod.refmap.json",
 	"mixins": [
+		"MixinBlock",
 		"MixinGuiScreen",
 		"MixinItemStack",
 		"MixinMinecraft",

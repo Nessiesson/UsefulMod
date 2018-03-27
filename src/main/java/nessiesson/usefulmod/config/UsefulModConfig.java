@@ -36,6 +36,9 @@ public class UsefulModConfig implements Exposable {
 	@Expose @SerializedName("test")
 	public boolean isTestEnabled = false;
 
+	@Expose @SerializedName("centered_plants")
+	public boolean isCenteredPlantsEnabled = true;
+
 	public static void save() {
 		LiteLoader.getInstance().writeConfig(instance);
 	}

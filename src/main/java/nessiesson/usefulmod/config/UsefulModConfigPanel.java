@@ -4,6 +4,7 @@ import com.mumfrey.liteloader.client.gui.GuiCheckbox;
 import com.mumfrey.liteloader.modconfig.AbstractConfigPanel;
 import com.mumfrey.liteloader.modconfig.ConfigPanelHost;
 import nessiesson.usefulmod.LiteModUsefulMod;
+import net.minecraft.client.Minecraft;
 
 public class UsefulModConfigPanel extends AbstractConfigPanel {
 	@Override
@@ -46,12 +47,20 @@ public class UsefulModConfigPanel extends AbstractConfigPanel {
 			}
 		}).checked = LiteModUsefulMod.config.isMiningGhostblockFixEnabled;
 
-		this.addControl(new GuiCheckbox(5, 0, 80, "Test option please ignore"), new ConfigOptionListener<GuiCheckbox>() {
+		this.addControl(new GuiCheckbox(5, 0, 80, "Test option please ignore."), new ConfigOptionListener<GuiCheckbox>() {
 			@Override
 			public void actionPerformed(GuiCheckbox control) {
 				LiteModUsefulMod.config.isTestEnabled = control.checked = !control.checked;
 			}
 		}).checked = LiteModUsefulMod.config.isTestEnabled;
+
+		this.addControl(new GuiCheckbox(6, 0, 96, "Enable centered plants."), new ConfigOptionListener<GuiCheckbox>() {
+			@Override
+			public void actionPerformed(GuiCheckbox control) {
+				LiteModUsefulMod.config.isCenteredPlantsEnabled = control.checked = !control.checked;
+				Minecraft.getMinecraft().renderGlobal.loadRenderers();
+			}
+		}).checked = LiteModUsefulMod.config.isCenteredPlantsEnabled;
 	}
 
 	@Override
