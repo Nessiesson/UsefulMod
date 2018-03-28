@@ -19,7 +19,7 @@ public abstract class MixinNetHandlerPlayerClient {
 			target = "Lnet/minecraft/client/Minecraft;displayGuiScreen(Lnet/minecraft/client/gui/GuiScreen;)V"),
 			locals = LocalCapture.CAPTURE_FAILHARD)
 	private void onPlayerDeath(SPacketCombatEvent packetIn, CallbackInfo ci, Entity entity) {
-		if(!LiteModUsefulMod.config.isDeathLocationEnabled) {
+		if (!LiteModUsefulMod.config.isDeathLocationEnabled) {
 			return;
 		}
 
