@@ -61,6 +61,13 @@ public class UsefulModConfigPanel extends AbstractConfigPanel {
 				Minecraft.getMinecraft().renderGlobal.loadRenderers();
 			}
 		}).checked = LiteModUsefulMod.config.isCenteredPlantsEnabled;
+
+		this.addControl(new GuiCheckbox(7, 0, 112, "Enable flight inertia cancellation."), new ConfigOptionListener<GuiCheckbox>() {
+			@Override
+			public void actionPerformed(GuiCheckbox control) {
+				LiteModUsefulMod.config.isFlightInertiaCancellationEnabled = control.checked = !control.checked;
+			}
+		}).checked = LiteModUsefulMod.config.isFlightInertiaCancellationEnabled;
 	}
 
 	@Override
