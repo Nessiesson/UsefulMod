@@ -18,7 +18,7 @@ public abstract class MixinEntityPlayer extends EntityLivingBase {
 
 	@Inject(method = "travel", at = @At(value = "INVOKE",
 			target = "Lnet/minecraft/entity/EntityLivingBase;travel(FFF)V", shift = At.Shift.AFTER))
-	private void poop(float strafe, float vertical, float forward, CallbackInfo ci) {
+	private void onPlayerFlightTravel(float strafe, float vertical, float forward, CallbackInfo ci) {
 		if (LiteModUsefulMod.config.isFlightInertiaCancellationEnabled && forward == 0.0F && strafe == 0.0F) {
 			this.motionX = 0.0D;
 			this.motionZ = 0.0D;
