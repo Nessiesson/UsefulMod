@@ -68,6 +68,14 @@ public class UsefulModConfigPanel extends AbstractConfigPanel {
 				LiteModUsefulMod.config.isFlightInertiaCancellationEnabled = control.checked = !control.checked;
 			}
 		}).checked = LiteModUsefulMod.config.isFlightInertiaCancellationEnabled;
+
+		this.addControl(new GuiCheckbox(8, 0, 128, "Enable translucent packed ice."), new ConfigOptionListener<GuiCheckbox>() {
+			@Override
+			public void actionPerformed(GuiCheckbox control) {
+				LiteModUsefulMod.config.isTranslucentPackedIceEnabled = control.checked = !control.checked;
+				Minecraft.getMinecraft().renderGlobal.loadRenderers();
+			}
+		}).checked = LiteModUsefulMod.config.isTranslucentPackedIceEnabled;
 	}
 
 	@Override

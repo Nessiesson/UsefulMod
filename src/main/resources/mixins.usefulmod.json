@@ -4,6 +4,7 @@
 	"refmap": "mixins.usefulmod.refmap.json",
 	"mixins": [
 		"MixinBlock",
+		"MixinBlockPackedIce",
 		"MixinEntityPlayer",
 		"MixinGuiScreen",
 		"MixinItemStack",

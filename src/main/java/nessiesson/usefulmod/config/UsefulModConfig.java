@@ -34,6 +34,8 @@ public class UsefulModConfig implements Exposable {
 	@Expose
 	@SerializedName("flight_inertia cancellation")
 	public boolean isFlightInertiaCancellationEnabled = false;
+	@Expose@SerializedName("packed_ice_translucent")
+	public boolean isTranslucentPackedIceEnabled = false;
 
 	public UsefulModConfig() {
 		if (instance == null) {
