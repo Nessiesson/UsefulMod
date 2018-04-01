@@ -9,28 +9,28 @@ import com.mumfrey.liteloader.modconfig.ExposableOptions;
 
 @ExposableOptions(strategy = ConfigStrategy.Unversioned, filename = "usefulmod.json")
 public class UsefulModConfig implements Exposable {
-	public static UsefulModConfig instance;
+	private static UsefulModConfig instance;
 	@Expose
 	@SerializedName("shulkerbox_display")
-	public boolean isShulkerBoxDisplayEnabled = true;
+	public boolean isShulkerBoxDisplayEnabled = false;
 	@Expose
 	@SerializedName("narrator_shortcut")
 	public boolean isNarratorShortcutEnabled = false;
 	@Expose
 	@SerializedName("death_location")
-	public boolean isDeathLocationEnabled = true;
+	public boolean isDeathLocationEnabled = false;
 	@Expose
 	@SerializedName("spectator_to_spectator")
-	public boolean isSpectatorToSpectatorEnabled = true;
+	public boolean isSpectatorToSpectatorEnabled = false;
 	@Expose
 	@SerializedName("mining_ghostblock_fix")
-	public boolean isMiningGhostblockFixEnabled = true;
+	public boolean isMiningGhostblockFixEnabled = false;
 	@Expose
 	@SerializedName("test")
 	public boolean isTestEnabled = false;
 	@Expose
 	@SerializedName("centered_plants")
-	public boolean isCenteredPlantsEnabled = true;
+	public boolean isCenteredPlantsEnabled = false;
 	@Expose
 	@SerializedName("flight_inertia cancellation")
 	public boolean isFlightInertiaCancellationEnabled = false;
@@ -48,7 +48,7 @@ public class UsefulModConfig implements Exposable {
 		}
 	}
 
-	public static void save() {
+	static void save() {
 		LiteLoader.getInstance().writeConfig(instance);
 	}
 }
