@@ -6,6 +6,7 @@
 		"MixinBlock",
 		"MixinBlockPackedIce",
 		"MixinEntityPlayer",
+		"MixinGlStateManager",
 		"MixinGuiScreen",
 		"MixinItemStack",
 		"MixinMinecraft",

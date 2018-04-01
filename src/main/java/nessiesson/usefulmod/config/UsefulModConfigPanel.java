@@ -76,6 +76,13 @@ public class UsefulModConfigPanel extends AbstractConfigPanel {
 				Minecraft.getMinecraft().renderGlobal.loadRenderers();
 			}
 		}).checked = LiteModUsefulMod.config.isTranslucentPackedIceEnabled;
+
+		this.addControl(new GuiCheckbox(9, 0, 144, "Enable clear lava."), new ConfigOptionListener<GuiCheckbox>() {
+			@Override
+			public void actionPerformed(GuiCheckbox control) {
+				LiteModUsefulMod.config.isClearLavaEnabled = control.checked = !control.checked;
+			}
+		}).checked = LiteModUsefulMod.config.isClearLavaEnabled;
 	}
 
 	@Override
