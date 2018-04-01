@@ -24,7 +24,7 @@ public abstract class MixinPlayerControllerMP {
 	@Inject(method = "clickBlock", at = @At(value = "INVOKE", shift = At.Shift.AFTER,
 			target = "Lnet/minecraft/client/multiplayer/PlayerControllerMP;"
 					+ "onPlayerDestroyBlock(Lnet/minecraft/util/math/BlockPos;)Z"),
-			locals = LocalCapture.CAPTURE_FAILHARD)
+			locals = LocalCapture.CAPTURE_FAILSOFT)
 	private void onInstantMine(BlockPos loc, EnumFacing face, CallbackInfoReturnable<Boolean> cir, IBlockState iblockstate) {
 		if (!LiteModUsefulMod.config.isMiningGhostblockFixEnabled) {
 			return;
