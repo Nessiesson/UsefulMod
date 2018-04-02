@@ -83,6 +83,13 @@ public class UsefulModConfigPanel extends AbstractConfigPanel {
 				LiteModUsefulMod.config.isClearLavaEnabled = control.checked = !control.checked;
 			}
 		}).checked = LiteModUsefulMod.config.isClearLavaEnabled;
+
+		this.addControl(new GuiCheckbox(10, 0, 160, "Enable smooth item movement."), new ConfigOptionListener<GuiCheckbox>() {
+			@Override
+			public void actionPerformed(GuiCheckbox control) {
+				LiteModUsefulMod.config.isSmoothItemMovementEnabled = control.checked = !control.checked;
+			}
+		}).checked = LiteModUsefulMod.config.isSmoothItemMovementEnabled;
 	}
 
 	@Override

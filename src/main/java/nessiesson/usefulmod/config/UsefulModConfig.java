@@ -40,6 +40,9 @@ public class UsefulModConfig implements Exposable {
 	@Expose
 	@SerializedName("clear_lava")
 	public boolean isClearLavaEnabled = false;
+	@Expose
+	@SerializedName("smooth_item_movement")
+	public boolean isSmoothItemMovementEnabled = false;
 
 	public UsefulModConfig() {
 		if (instance == null) {
