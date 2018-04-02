@@ -15,7 +15,7 @@ public abstract class MixinBlockPackedIce extends Block {
 
 	@Override
 	public BlockRenderLayer getBlockLayer() {
-		if(LiteModUsefulMod.config.isTranslucentPackedIceEnabled) {
+		if (LiteModUsefulMod.config.isTranslucentPackedIceEnabled) {
 			return BlockRenderLayer.TRANSLUCENT;
 		} else {
 			return super.getBlockLayer();
