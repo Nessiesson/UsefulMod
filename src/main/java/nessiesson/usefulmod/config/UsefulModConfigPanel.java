@@ -5,6 +5,7 @@ import com.mumfrey.liteloader.modconfig.AbstractConfigPanel;
 import com.mumfrey.liteloader.modconfig.ConfigPanelHost;
 import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.client.Minecraft;
+import net.minecraft.init.Blocks;
 
 public class UsefulModConfigPanel extends AbstractConfigPanel {
 	@Override
@@ -90,6 +91,14 @@ public class UsefulModConfigPanel extends AbstractConfigPanel {
 				LiteModUsefulMod.config.isSmoothItemMovementEnabled = control.checked = !control.checked;
 			}
 		}).checked = LiteModUsefulMod.config.isSmoothItemMovementEnabled;
+
+		this.addControl(new GuiCheckbox(11, 0, 176, "Enable no slime movement slowdowns. (WARNING: experimental feature - potentially causes position desynchronisation in multiplayer.)"), new ConfigOptionListener<GuiCheckbox>() {
+			@Override
+			public void actionPerformed(GuiCheckbox control) {
+				LiteModUsefulMod.config.isNoSlimeSlowdownEnabled = control.checked = !control.checked;
+				Blocks.SLIME_BLOCK.slipperiness = LiteModUsefulMod.config.isNoSlimeSlowdownEnabled ? 0.6F : 0.8F;
+			}
+		}).checked = LiteModUsefulMod.config.isNoSlimeSlowdownEnabled;
 	}
 
 	@Override

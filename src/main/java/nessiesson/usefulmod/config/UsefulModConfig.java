@@ -43,6 +43,9 @@ public class UsefulModConfig implements Exposable {
 	@Expose
 	@SerializedName("smooth_item_movement")
 	public boolean isSmoothItemMovementEnabled = false;
+	@Expose
+	@SerializedName("no_slime_slowdown")
+	public boolean isNoSlimeSlowdownEnabled = false;
 
 	public UsefulModConfig() {
 		if (instance == null) {

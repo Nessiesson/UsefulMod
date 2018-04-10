@@ -5,6 +5,7 @@
 	"mixins": [
 		"MixinBlock",
 		"MixinBlockPackedIce",
+		"MixinBlockSlime",
 		"MixinEntityItem",
 		"MixinEntityPlayer",
 		"MixinGlStateManager",

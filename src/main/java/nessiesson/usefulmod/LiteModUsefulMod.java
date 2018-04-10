@@ -6,6 +6,7 @@ import com.mumfrey.liteloader.modconfig.ConfigPanel;
 import nessiesson.usefulmod.config.UsefulModConfig;
 import nessiesson.usefulmod.config.UsefulModConfigPanel;
 import net.minecraft.client.Minecraft;
+import net.minecraft.init.Blocks;
 
 import java.io.File;
 
@@ -21,7 +22,7 @@ public class LiteModUsefulMod implements Tickable, Configurable {
 	@Override
 	public void init(File configPath) {
 		// TODO Auto-generated method stub
-
+		Blocks.SLIME_BLOCK.slipperiness = LiteModUsefulMod.config.isNoSlimeSlowdownEnabled ? 0.6F : 0.8F;
 	}
 
 	@Override
