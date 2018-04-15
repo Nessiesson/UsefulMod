@@ -12,7 +12,7 @@ public class UsefulModConfig implements Exposable {
 	private static UsefulModConfig instance;
 	@Expose
 	@SerializedName("shulkerbox_display")
-	public boolean isShulkerBoxDisplayEnabled = false;
+	public boolean isShulkerBoxDisplayEnabled = true;
 	@Expose
 	@SerializedName("narrator_shortcut")
 	public boolean isNarratorShortcutEnabled = false;
