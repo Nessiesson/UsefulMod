@@ -20,7 +20,7 @@ import net.minecraft.util.ResourceLocation;
 import java.awt.*;
 import java.util.List;
 
-// Modified version of Vazkii's  Quark Forgemod.
+// Modified version of the shulkerbox display from Vazkii's  Quark Forgemod.
 public class ShulkerBoxDisplay {
 	private final static ResourceLocation WIDGET_RESOURCE = new ResourceLocation("usefulmod", "textures/shulker_widget.png");
 
