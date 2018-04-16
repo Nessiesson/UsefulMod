@@ -18,10 +18,10 @@ public class UsefulModConfig implements Exposable {
 	public boolean isNarratorShortcutEnabled = false;
 	@Expose
 	@SerializedName("death_location")
-	public boolean isDeathLocationEnabled = false;
+	public boolean isDeathLocationEnabled = true;
 	@Expose
 	@SerializedName("spectator_to_spectator")
-	public boolean isSpectatorToSpectatorEnabled = false;
+	public boolean isSpectatorToSpectatorEnabled = true;
 	@Expose
 	@SerializedName("mining_ghostblock_fix")
 	public boolean isMiningGhostblockFixEnabled = false;
@@ -42,7 +42,7 @@ public class UsefulModConfig implements Exposable {
 	public boolean isClearLavaEnabled = false;
 	@Expose
 	@SerializedName("smooth_item_movement")
-	public boolean isSmoothItemMovementEnabled = false;
+	public boolean isSmoothItemMovementEnabled = true;
 	@Expose
 	@SerializedName("no_slime_slowdown")
 	public boolean isNoSlimeSlowdownEnabled = false;
