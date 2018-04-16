@@ -1,6 +1,7 @@
 {
 	"name": "usefulmod",
-	"version": 0.4,
+	"version": "0.4.1"
+	",
 	"mcversion": "1.12",
 	"mixinConfigs": [
 		"mixins.usefulmod.json"
