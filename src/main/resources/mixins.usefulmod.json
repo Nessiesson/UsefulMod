@@ -5,15 +5,15 @@
 	"mixins": [
 		"MixinBlock",
 		"MixinBlockPackedIce",
+		"MixinBlockShulkerBox",
 		"MixinBlockSlime",
 		"MixinEntityItem",
 		"MixinEntityPlayer",
 		"MixinGlStateManager",
-		"MixinGuiScreen",
-		"MixinItemStack",
 		"MixinMinecraft",
 		"MixinNetHandlerPlayerClient",
 		"MixinPlayerControllerMP",
+		"MixinShulkerBoxDisplayRenderer",
 		"MixinTeleportToPlayer"
 	]
 }
