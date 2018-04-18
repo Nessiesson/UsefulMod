@@ -10,14 +10,12 @@ import net.minecraft.client.renderer.RenderItem;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemShulkerBox;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.ResourceLocation;
 
-import java.awt.*;
 import java.util.List;
 
 // Modified version of the shulkerbox display from Vazkii's  Quark Forgemod.
@@ -41,14 +39,14 @@ public class ShulkerBoxDisplay {
 				GlStateManager.pushMatrix();
 				RenderHelper.enableGUIStandardItemLighting();
 				GlStateManager.enableRescaleNormal();
-				GlStateManager.translate(0, 0, 700);
+				GlStateManager.translate(0F, 0F, 700F);
 
 				Minecraft mc = Minecraft.getMinecraft();
 				mc.getTextureManager().bindTexture(WIDGET_RESOURCE);
 
 				EnumDyeColor dye = ((BlockShulkerBox) ((ItemBlock) stack.getItem()).getBlock()).getColor();
-				Color color = new Color(ItemDye.DYE_COLORS[dye.getDyeDamage()]);
-				GlStateManager.color((float) color.getRed() / 255F, (float) color.getGreen() / 255F, (float) color.getBlue() / 255F);
+				float[] colours = dye.getColorComponentValues();
+				GlStateManager.color(colours[0], colours[1], colours[2]);
 
 				gui.drawTexturedModalRect(currentX, currentY, 0, 0, texWidth, texHeight);
 
