@@ -1,5 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
+import com.mumfrey.liteloader.gl.GL;
 import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
@@ -36,8 +37,7 @@ public abstract class MixinTileEntityBeaconRenderer implements IMixinEntityBeaco
 			float[] colours = new Color((int) (colour * (16777215.0 / 2611456.0))).getRGBColorComponents(null);
 			AxisAlignedBB axisalignedbb = (new AxisAlignedBB(pos)).offset(-d1, -d2, -d3).grow(d0).expand(0.0D, (double) te.getWorld().getHeight(), 0.0D);
 
-			//520 is somehow a magic value that makes it all work. ;-;
-			GlStateManager.depthFunc(520);
+			GlStateManager.depthFunc(GL.GL_LESS);
 			GlStateManager.depthMask(false);
 			GlStateManager.disableFog();
 			GlStateManager.disableLighting();
