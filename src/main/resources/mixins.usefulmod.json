@@ -3,6 +3,7 @@
 	"package": "nessiesson.usefulmod.mixins",
 	"refmap": "mixins.usefulmod.refmap.json",
 	"mixins": [
+		"IMixinEntityBeacon",
 		"MixinBlock",
 		"MixinBlockPackedIce",
 		"MixinBlockShulkerBox",
@@ -12,8 +13,10 @@
 		"MixinGlStateManager",
 		"MixinMinecraft",
 		"MixinNetHandlerPlayerClient",
+		"MixinParticleManager",
 		"MixinPlayerControllerMP",
 		"MixinShulkerBoxDisplayRenderer",
-		"MixinTeleportToPlayer"
+		"MixinTeleportToPlayer",
+		"MixinTileEntityBeaconRenderer"
 	]
 }

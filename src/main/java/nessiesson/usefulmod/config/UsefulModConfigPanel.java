@@ -65,6 +65,20 @@ public class UsefulModConfigPanel extends AbstractConfigPanel {
 			}
 		}).checked = LiteModUsefulMod.config.isClearLavaEnabled;
 
+		this.addControl(new GuiCheckbox(controlId, 0, SPACING * controlId++, "Show beacon range."), new ConfigOptionListener<GuiCheckbox>() {
+			@Override
+			public void actionPerformed(GuiCheckbox control) {
+				LiteModUsefulMod.config.isShowBeaconRangeEnabled = control.checked = !control.checked;
+			}
+		}).checked = LiteModUsefulMod.config.isShowBeaconRangeEnabled;
+
+		this.addControl(new GuiCheckbox(controlId, 0, SPACING * controlId++, "Show block breaking particles."), new ConfigOptionListener<GuiCheckbox>() {
+			@Override
+			public void actionPerformed(GuiCheckbox control) {
+				LiteModUsefulMod.config.showBlockBreakingParticles = control.checked = !control.checked;
+			}
+		}).checked = LiteModUsefulMod.config.showBlockBreakingParticles;
+
 		this.addControl(new GuiCheckbox(controlId, 0, SPACING * controlId++, "Enable narrator shortcut."), new ConfigOptionListener<GuiCheckbox>() {
 			@Override
 			public void actionPerformed(GuiCheckbox control) {

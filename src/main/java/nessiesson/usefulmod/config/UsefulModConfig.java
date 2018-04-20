@@ -46,6 +46,12 @@ public class UsefulModConfig implements Exposable {
 	@Expose
 	@SerializedName("no_slime_slowdown")
 	public boolean isNoSlimeSlowdownEnabled = false;
+	@Expose
+	@SerializedName("show_beacon_range")
+	public boolean isShowBeaconRangeEnabled = false;
+	@Expose
+	@SerializedName("show_block_breaking_particles")
+	public boolean showBlockBreakingParticles = true;
 
 	public UsefulModConfig() {
 		if (instance == null) {
