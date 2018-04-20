@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.tileentity.TileEntityBeaconRenderer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntityBeacon;
 import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -28,10 +29,16 @@ public abstract class MixinTileEntityBeaconRenderer implements IMixinEntityBeaco
 			double d1 = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) partialTicks;
 			double d2 = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double) partialTicks;
 			double d3 = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double) partialTicks;
-			float[] colours = new Color(255, 20, 147).getRGBColorComponents(null);
 
-			AxisAlignedBB axisalignedbb = (new AxisAlignedBB(te.getPos())).offset(-d1, -d2, -d3).grow(d0).expand(0.0D, (double) te.getWorld().getHeight(), 0.0D);
+			BlockPos pos = te.getPos();
+			// It's not good, but it seems reasonably random.
+			int colour = pos.getX() + 101 * pos.getZ() + 41942 * pos.getY();
+			float[] colours = new Color((int) (colour * (16777215.0 / 2611456.0))).getRGBColorComponents(null);
+			AxisAlignedBB axisalignedbb = (new AxisAlignedBB(pos)).offset(-d1, -d2, -d3).grow(d0).expand(0.0D, (double) te.getWorld().getHeight(), 0.0D);
 
+			//520 is somehow a magic value that makes it all work. ;-;
+			GlStateManager.depthFunc(520);
+			GlStateManager.depthMask(false);
 			GlStateManager.disableFog();
 			GlStateManager.disableLighting();
 			GlStateManager.disableTexture2D();
@@ -42,6 +49,8 @@ public abstract class MixinTileEntityBeaconRenderer implements IMixinEntityBeaco
 			GlStateManager.enableTexture2D();
 			GlStateManager.enableLighting();
 			GlStateManager.enableFog();
+			GlStateManager.depthMask(true);
+			GlStateManager.depthFunc(515);
 		}
 	}
 }
