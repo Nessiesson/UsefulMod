@@ -6,7 +6,9 @@ import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.entity.Entity;
 import net.minecraft.network.play.server.SPacketCombatEvent;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.event.ClickEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,6 +26,8 @@ public abstract class MixinNetHandlerPlayerClient {
 		}
 
 		BlockPos pos = entity.getPosition();
-		Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(new TextComponentString("You died @ " + pos.getX() + " " + pos.getY() + " " + pos.getZ()));
+		ITextComponent message = new TextComponentString("You died @ " + pos.getX() + " " + pos.getY() + " " + pos.getZ());
+		message.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, pos.getX() + " " + pos.getY() + " " + pos.getZ()));
+		Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(message);
 	}
 }
