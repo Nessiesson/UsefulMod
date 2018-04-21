@@ -79,6 +79,14 @@ public class UsefulModConfigPanel extends AbstractConfigPanel {
 			}
 		}).checked = LiteModUsefulMod.config.showBlockBreakingParticles;
 
+		this.addControl(new GuiCheckbox(controlId, 0, SPACING * controlId++, "Enable stepassist when jump boost is active."), new ConfigOptionListener<GuiCheckbox>() {
+			@Override
+			public void actionPerformed(GuiCheckbox control) {
+				LiteModUsefulMod.config.isJumpBoostStepAssistEnabled = control.checked = !control.checked;
+				LiteModUsefulMod.stepAssistHelper.update();
+			}
+		}).checked = LiteModUsefulMod.config.isJumpBoostStepAssistEnabled;
+
 		this.addControl(new GuiCheckbox(controlId, 0, SPACING * controlId++, "Enable narrator shortcut."), new ConfigOptionListener<GuiCheckbox>() {
 			@Override
 			public void actionPerformed(GuiCheckbox control) {

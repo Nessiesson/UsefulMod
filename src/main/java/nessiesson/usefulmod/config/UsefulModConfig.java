@@ -52,6 +52,9 @@ public class UsefulModConfig implements Exposable {
 	@Expose
 	@SerializedName("show_block_breaking_particles")
 	public boolean showBlockBreakingParticles = true;
+	@Expose
+	@SerializedName("jump_boost_step_assist")
+	public boolean isJumpBoostStepAssistEnabled = false;
 
 	public UsefulModConfig() {
 		if (instance == null) {
