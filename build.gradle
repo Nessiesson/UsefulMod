@@ -24,6 +24,7 @@ buildscript {
 apply plugin: 'net.minecraftforge.gradle.liteloader'
 apply plugin: 'org.spongepowered.mixin'
 
+version = project.version + '-SNAPSHOT-' + getGitHash()
 group = project.group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = project.name
 
@@ -67,4 +68,10 @@ jar {
 
 runClient {
 	jvmArgs "-Dmixin.debug=true"
+}
+
+def getGitHash() {
+	def process = 'git rev-parse --short HEAD'.execute()
+	process.waitFor()
+	return process.exitValue() ? 'unknown' : process.text.trim()
 }
