@@ -101,6 +101,13 @@ public class UsefulModConfigPanel extends AbstractConfigPanel {
 			}
 		}).checked = LiteModUsefulMod.config.isTestEnabled;
 
+		this.addControl(new GuiCheckbox(controlId, 0, SPACING * controlId++, "Immediately respawn on death."), new ConfigOptionListener<GuiCheckbox>() {
+			@Override
+			public void actionPerformed(GuiCheckbox control) {
+				LiteModUsefulMod.config.isRespawnOnDeathEnabled = control.checked = !control.checked;
+			}
+		}).checked = LiteModUsefulMod.config.isRespawnOnDeathEnabled;
+
 		this.addControl(new GuiCheckbox(controlId, 0, SPACING * controlId++, "Enable flight inertia cancellation. [Experimental]"), new ConfigOptionListener<GuiCheckbox>() {
 			@Override
 			public void actionPerformed(GuiCheckbox control) {

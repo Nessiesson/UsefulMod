@@ -55,6 +55,9 @@ public class UsefulModConfig implements Exposable {
 	@Expose
 	@SerializedName("jump_boost_step_assist")
 	public boolean isJumpBoostStepAssistEnabled = false;
+	@Expose
+	@SerializedName("respawn_on_death")
+	public boolean isRespawnOnDeathEnabled = false;
 
 	public UsefulModConfig() {
 		if (instance == null) {

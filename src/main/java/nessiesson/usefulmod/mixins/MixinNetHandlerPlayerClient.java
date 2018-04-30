@@ -30,4 +30,13 @@ public abstract class MixinNetHandlerPlayerClient {
 		message.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, pos.getX() + " " + pos.getY() + " " + pos.getZ()));
 		Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(message);
 	}
+
+	@Inject(method = "handleCombatEvent", at = @At(value = "INVOKE",
+			target = "Lnet/minecraft/client/Minecraft;displayGuiScreen(Lnet/minecraft/client/gui/GuiScreen;)V",
+			shift = At.Shift.BEFORE))
+	private void onPlayerDeath(SPacketCombatEvent packetIn, CallbackInfo ci) {
+		if (LiteModUsefulMod.config.isRespawnOnDeathEnabled) {
+			Minecraft.getMinecraft().player.respawnPlayer();
+		}
+	}
 }
