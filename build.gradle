@@ -28,6 +28,10 @@ version = project.version + '-SNAPSHOT-' + getGitHash()
 group = project.group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = project.name
 
+dependencies {
+	compile 'org.spongepowered:mixin:0.7.8-SNAPSHOT'
+}
+
 minecraft {
 	// these values are defined in the gradle.properties file, so that this file does not need to be altered
 	version = project.mcVersion
@@ -67,7 +71,7 @@ jar {
 }
 
 runClient {
-	jvmArgs "-Dmixin.debug=true"
+	jvmArgs "-Dmixin.debug=true", "-Dmixin.hotSwap=true"
 }
 
 def getGitHash() {
