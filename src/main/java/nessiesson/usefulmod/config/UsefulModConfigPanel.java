@@ -6,6 +6,7 @@ import com.mumfrey.liteloader.modconfig.ConfigPanelHost;
 import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.text.TextFormatting;
 
 public class UsefulModConfigPanel extends AbstractConfigPanel {
 	@Override
@@ -130,6 +131,13 @@ public class UsefulModConfigPanel extends AbstractConfigPanel {
 				Blocks.SLIME_BLOCK.slipperiness = LiteModUsefulMod.config.isNoSlimeSlowdownEnabled ? 0.6F : 0.8F;
 			}
 		}).checked = LiteModUsefulMod.config.isNoSlimeSlowdownEnabled;
+
+		this.addControl(new GuiCheckbox(controlId, 0, SPACING * controlId++, TextFormatting.BOLD + "[SUPER EXPERIMENTAL]" + TextFormatting.RESET + "Enable 1.8 (?) pistons [Experimental]"), new ConfigOptionListener<GuiCheckbox>() {
+			@Override
+			public void actionPerformed(GuiCheckbox control) {
+				LiteModUsefulMod.config.isOneEightPistonsEnabled = control.checked = !control.checked;
+			}
+		}).checked = LiteModUsefulMod.config.isOneEightPistonsEnabled;
 	}
 
 	@Override

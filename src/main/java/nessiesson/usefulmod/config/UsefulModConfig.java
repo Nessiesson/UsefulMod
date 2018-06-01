@@ -58,6 +58,9 @@ public class UsefulModConfig implements Exposable {
 	@Expose
 	@SerializedName("respawn_on_death")
 	public boolean isRespawnOnDeathEnabled = false;
+	@Expose
+	@SerializedName("1.8_pistons")
+	public boolean isOneEightPistonsEnabled = false;
 
 	public UsefulModConfig() {
 		if (instance == null) {
