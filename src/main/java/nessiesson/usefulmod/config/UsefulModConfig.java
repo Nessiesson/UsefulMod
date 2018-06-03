@@ -64,6 +64,9 @@ public class UsefulModConfig implements Exposable {
 	@Expose
 	@SerializedName("map_display")
 	public boolean isMapDisplayEnabled = false;
+	@Expose
+	@SerializedName("nofall")
+	public boolean isNoFallEnabled = false;
 
 	public UsefulModConfig() {
 		if (instance == null) {

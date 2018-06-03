@@ -138,6 +138,13 @@ public class UsefulModConfigPanel extends AbstractConfigPanel {
 				LiteModUsefulMod.config.isOneEightPistonsEnabled = control.checked = !control.checked;
 			}
 		}).checked = LiteModUsefulMod.config.isOneEightPistonsEnabled;
+
+		this.addControl(new GuiCheckbox(controlId, 0, SPACING * controlId++, "Disable fall damage. (Will still take damage when hitting wall with elytra.) [Experimental]"), new ConfigOptionListener<GuiCheckbox>() {
+			@Override
+			public void actionPerformed(GuiCheckbox control) {
+				LiteModUsefulMod.config.isNoFallEnabled = control.checked = !control.checked;
+			}
+		}).checked = LiteModUsefulMod.config.isNoFallEnabled;
 	}
 
 	@Override

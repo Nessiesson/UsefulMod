@@ -11,6 +11,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.init.Blocks;
 import net.minecraft.network.INetHandler;
+import net.minecraft.network.play.client.CPacketPlayer;
 import net.minecraft.network.play.server.SPacketJoinGame;
 
 import java.io.File;
@@ -21,32 +22,33 @@ public class LiteModUsefulMod implements Tickable, Configurable, JoinGameListene
 
 	@Override
 	public String getVersion() {
-		// TODO Auto-generated method stub
 		return "@VERSION@";
 	}
 
 	@Override
 	public void init(File configPath) {
-		// TODO Auto-generated method stub
 		Blocks.SLIME_BLOCK.slipperiness = LiteModUsefulMod.config.isNoSlimeSlowdownEnabled ? 0.6F : 0.8F;
 	}
 
 	@Override
 	public void upgradeSettings(String version, File configPath, File oldConfigPath) {
-		// TODO Auto-generated method stub
-
 	}
 
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
 		return "UsefulMod";
 	}
 
 	@Override
 	public void onTick(Minecraft minecraft, float partialTicks, boolean inGame, boolean clock) {
-		// TODO Auto-generated method stub
+		if (!inGame) {
+			return;
+		}
 
+		//TODO: If possible, make it so vertical collisions with elytra don't take damage.
+		if (LiteModUsefulMod.config.isNoFallEnabled && minecraft.player.fallDistance > 2.0F) {
+			minecraft.player.connection.sendPacket(new CPacketPlayer(true));
+		}
 	}
 
 	@Override
