@@ -19,8 +19,6 @@
 		"MixinParticleManager",
 		"MixinPlayerControllerMP",
 		"MixinShulkerBoxDisplayRenderer",
-		"MixinSPacketEntityEffect",
-		"MixinSPacketRemoveEntityEffect",
 		"MixinTeleportToPlayer",
 		"MixinTileEntityBeaconRenderer"
 	]

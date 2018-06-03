@@ -84,7 +84,6 @@ public class UsefulModConfigPanel extends AbstractConfigPanel {
 			@Override
 			public void actionPerformed(GuiCheckbox control) {
 				LiteModUsefulMod.config.isJumpBoostStepAssistEnabled = control.checked = !control.checked;
-				LiteModUsefulMod.stepAssistHelper.update();
 			}
 		}).checked = LiteModUsefulMod.config.isJumpBoostStepAssistEnabled;
 
