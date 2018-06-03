@@ -61,6 +61,9 @@ public class UsefulModConfig implements Exposable {
 	@Expose
 	@SerializedName("1.8_pistons")
 	public boolean isOneEightPistonsEnabled = false;
+	@Expose
+	@SerializedName("map_display")
+	public boolean isMapDisplayEnabled = false;
 
 	public UsefulModConfig() {
 		if (instance == null) {

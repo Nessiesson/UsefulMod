@@ -1,8 +1,8 @@
 package nessiesson.usefulmod.mixins;
 
-import nessiesson.usefulmod.ShulkerBoxDisplay;
-import net.minecraft.block.BlockShulkerBox;
+import nessiesson.usefulmod.MapDisplay;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.item.ItemMap;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,10 +12,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
 
-@Mixin(BlockShulkerBox.class)
-public abstract class MixinBlockShulkerBox {
+@Mixin(ItemMap.class)
+public abstract class MixinItemMap {
 	@Inject(method = "addInformation", at = @At(value = "HEAD"))
 	private void postGetTooltip(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn, CallbackInfo ci) {
-		ShulkerBoxDisplay.addShulkerBoxTooltop(stack, tooltip);
+		MapDisplay.addMapTooltip(stack, tooltip);
 	}
 }

@@ -132,7 +132,7 @@ public class UsefulModConfigPanel extends AbstractConfigPanel {
 			}
 		}).checked = LiteModUsefulMod.config.isNoSlimeSlowdownEnabled;
 
-		this.addControl(new GuiCheckbox(controlId, 0, SPACING * controlId++, TextFormatting.BOLD + "[SUPER EXPERIMENTAL]" + TextFormatting.RESET + "Enable 1.8 (?) pistons [Experimental]"), new ConfigOptionListener<GuiCheckbox>() {
+		this.addControl(new GuiCheckbox(controlId, 0, SPACING * controlId++, TextFormatting.BOLD + "[SUPER EXPERIMENTAL] " + TextFormatting.RESET + "Enable 1.8(?) pistons [Experimental]"), new ConfigOptionListener<GuiCheckbox>() {
 			@Override
 			public void actionPerformed(GuiCheckbox control) {
 				LiteModUsefulMod.config.isOneEightPistonsEnabled = control.checked = !control.checked;
