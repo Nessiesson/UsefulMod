@@ -10,7 +10,6 @@
 		"MixinBlockShulkerBox",
 		"MixinBlockSlime",
 		"MixinEntityItem",
-		"MixinEntityPlayer",
 		"MixinGlStateManager",
 		"MixinItemMap",
 		"MixinMapDisplayRenderer",

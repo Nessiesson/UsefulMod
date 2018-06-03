@@ -32,9 +32,6 @@ public class UsefulModConfig implements Exposable {
 	@SerializedName("centered_plants")
 	public boolean isCenteredPlantsEnabled = false;
 	@Expose
-	@SerializedName("flight_inertia cancellation")
-	public boolean isFlightInertiaCancellationEnabled = false;
-	@Expose
 	@SerializedName("packed_ice_translucent")
 	public boolean isTranslucentPackedIceEnabled = false;
 	@Expose
