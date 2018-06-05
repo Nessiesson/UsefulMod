@@ -18,6 +18,7 @@ buildscript {
 	dependencies {
 		classpath 'net.minecraftforge.gradle:ForgeGradle:' + project.forgeGradleVersion
 		classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
+		classpath 'org.jetbrains.java.decompiler:fernflower:sponge-SNAPSHOT'
 	}
 }
 
@@ -34,6 +35,7 @@ minecraft {
 	mappings = project.mcMappings
 	runDir = "run"
 	replace '@VERSION@', project.version
+	replace '@NAME@', project.name
 }
 
 sourceSets {
@@ -41,6 +43,11 @@ sourceSets {
 		// Refmap declaration must match the refmap name specified in the json config
 		ext.refMap = "mixins.usefulmod.refmap.json"
 	}
+}
+
+dependencies {
+	// Fernflower decompiler
+	compile 'org.jetbrains.java.decompiler:fernflower:sponge-SNAPSHOT'
 }
 
 mixin {

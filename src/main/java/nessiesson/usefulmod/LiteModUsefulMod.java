@@ -32,7 +32,7 @@ public class LiteModUsefulMod implements Tickable, Configurable {
 
 	@Override
 	public String getName() {
-		return "UsefulMod";
+		return "@NAME@";
 	}
 
 	@Override
