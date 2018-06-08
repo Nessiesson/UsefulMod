@@ -64,6 +64,9 @@ public class UsefulModConfig implements Exposable {
 	@Expose
 	@SerializedName("nofall")
 	public boolean isNoFallEnabled = false;
+	@Expose
+	@SerializedName("always_singleplayer_cheats")
+	public boolean isAlwaysSingleplayerCheatedEnabled = true;
 
 	public UsefulModConfig() {
 		if (instance == null) {

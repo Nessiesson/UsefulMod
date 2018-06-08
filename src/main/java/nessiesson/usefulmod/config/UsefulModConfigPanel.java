@@ -108,6 +108,13 @@ public class UsefulModConfigPanel extends AbstractConfigPanel {
 			}
 		}).checked = LiteModUsefulMod.config.isRespawnOnDeathEnabled;
 
+		this.addControl(new GuiCheckbox(controlId, 0, SPACING * controlId++, "Always have cheats enabled in singleplayer."), new ConfigOptionListener<GuiCheckbox>() {
+			@Override
+			public void actionPerformed(GuiCheckbox control) {
+				LiteModUsefulMod.config.isAlwaysSingleplayerCheatedEnabled = control.checked = !control.checked;
+			}
+		}).checked = LiteModUsefulMod.config.isAlwaysSingleplayerCheatedEnabled;
+
 		this.addControl(new GuiCheckbox(controlId, 0, SPACING * controlId++, "Enable translucent packed ice. [Experimental]"), new ConfigOptionListener<GuiCheckbox>() {
 			@Override
 			public void actionPerformed(GuiCheckbox control) {
