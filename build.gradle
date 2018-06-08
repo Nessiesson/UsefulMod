@@ -11,21 +11,21 @@ buildscript {
 			url = "http://files.minecraftforge.net/maven"
 		}
 		maven {
-			name = 'sponge'
-			url = 'http://repo.spongepowered.org/maven'
+			name = "sponge"
+			url = "http://repo.spongepowered.org/maven"
 		}
 	}
 	dependencies {
-		classpath 'net.minecraftforge.gradle:ForgeGradle:' + project.forgeGradleVersion
-		classpath 'org.spongepowered:mixingradle:0.6-SNAPSHOT'
+		classpath "net.minecraftforge.gradle:ForgeGradle:" + project.forgeGradleVersion
+		classpath "org.spongepowered:mixingradle:" + project.mixinGradleVersion
 	}
 }
 
-apply plugin: 'net.minecraftforge.gradle.liteloader'
-apply plugin: 'org.spongepowered.mixin'
+apply plugin: "net.minecraftforge.gradle.liteloader"
+apply plugin: "org.spongepowered.mixin"
 
-version = project.version + '-SNAPSHOT-' + getGitHash()
-group = project.group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+version = project.version
+group = project.group
 archivesBaseName = project.name
 
 minecraft {
@@ -33,8 +33,10 @@ minecraft {
 	version = project.mcVersion
 	mappings = project.mcMappings
 	runDir = "run"
-	replace '@VERSION@', project.version
-	replace '@NAME@', project.name
+	makeObfSourceJar = false
+
+	replace "@VERSION@", project.version
+	replace "@NAME@", project.name
 }
 
 sourceSets {
@@ -46,7 +48,7 @@ sourceSets {
 
 dependencies {
 	// For Mixin auditing.
-	compile 'org.jetbrains.java.decompiler:fernflower:sponge-SNAPSHOT'
+	compile "org.jetbrains.java.decompiler:fernflower:sponge-SNAPSHOT"
 }
 
 mixin {
@@ -68,16 +70,11 @@ litemod {
 }
 
 jar {
-	// The litemod task above generates the litemod.json dynamically, you can replace it with a resource if you want more control
+	classifier = ""
+	baseName = archivesBaseName
 	from litemod.outputs
 }
 
 runClient {
 	jvmArgs "-Dmixin.debug=true"
-}
-
-def getGitHash() {
-	def process = 'git rev-parse --short HEAD'.execute()
-	process.waitFor()
-	return process.exitValue() ? 'unknown' : process.text.trim()
 }
