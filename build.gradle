@@ -16,8 +16,8 @@ buildscript {
 		}
 	}
 	dependencies {
-		classpath "net.minecraftforge.gradle:ForgeGradle:" + project.forgeGradleVersion
-		classpath "org.spongepowered:mixingradle:" + project.mixinGradleVersion
+		classpath "net.minecraftforge.gradle:ForgeGradle:$project.forgeGradleVersion"
+		classpath "org.spongepowered:mixingradle:$project.mixinGradleVersion"
 	}
 }
 
@@ -26,7 +26,7 @@ apply plugin: "org.spongepowered.mixin"
 
 version = project.version
 group = project.group
-archivesBaseName = project.name
+archivesBaseName = "$project.name-$project.mcVersion"
 
 minecraft {
 	// these values are defined in the gradle.properties file, so that this file does not need to be altered
