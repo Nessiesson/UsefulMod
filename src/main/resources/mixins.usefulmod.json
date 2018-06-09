@@ -2,6 +2,7 @@
 	"required": true,
 	"package": "nessiesson.usefulmod.mixins",
 	"refmap": "mixins.usefulmod.refmap.json",
+	"mixinPriority": 999,
 	"mixins": [
 		"IMixinEntityBeacon",
 		"MixinBlock",
