@@ -44,6 +44,10 @@ public abstract class MixinKeyBinding {
 
 	@Inject(method = "setKeyBindState", at = @At("HEAD"), cancellable = true)
 	private static void setKeyBindState(int keyCode, boolean pressed, CallbackInfo ci) {
+		// To play nice with carpetclient's snap aim key locker.
+		if (ci.isCancelled()) {
+			return;
+		}
 		ci.cancel();
 
 		if (keyCode != 0) {
