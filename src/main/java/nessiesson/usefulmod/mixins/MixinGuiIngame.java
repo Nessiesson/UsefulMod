@@ -1,6 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
-import nessiesson.usefulmod.config.Config;
+import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.client.gui.GuiIngame;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.scoreboard.ScoreObjective;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class MixinGuiIngame {
 	@Inject(method = "renderScoreboard", at = @At("HEAD"), cancellable = true)
 	private void toggleScoreboard(ScoreObjective objective, ScaledResolution scaledRes, CallbackInfo ci) {
-		if (Config.INSTANCE.isScoreboardHidden()) {
+		if (!LiteModUsefulMod.Companion.getConfig().showScoreboard) {
 			ci.cancel();
 		}
 	}

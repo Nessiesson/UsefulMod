@@ -43,6 +43,10 @@ object MixinCode {
 	}
 
 	fun handleHaxCrafting(id: Int) {
+		if (!LiteModUsefulMod.config.craftingHax) {
+			return
+		}
+
 		val mc = Minecraft.getMinecraft()
 		val controller = mc.playerController
 		val player = mc.player
