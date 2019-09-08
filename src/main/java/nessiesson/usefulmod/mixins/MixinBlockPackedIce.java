@@ -1,6 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
-import nessiesson.usefulmod.LiteModUsefulMod;
+import nessiesson.usefulmod.config.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockPackedIce;
 import net.minecraft.block.material.Material;
@@ -14,11 +14,11 @@ public abstract class MixinBlockPackedIce extends Block {
 	}
 
 	@Override
-	public BlockRenderLayer getBlockLayer() {
-		if (LiteModUsefulMod.config.isTranslucentPackedIceEnabled) {
+	public BlockRenderLayer getRenderLayer() {
+		if (Config.INSTANCE.isTranslucentPackedIceEnabled()) {
 			return BlockRenderLayer.TRANSLUCENT;
 		} else {
-			return super.getBlockLayer();
+			return super.getRenderLayer();
 		}
 	}
 }

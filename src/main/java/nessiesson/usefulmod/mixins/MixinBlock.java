@@ -1,6 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
-import nessiesson.usefulmod.LiteModUsefulMod;
+import nessiesson.usefulmod.config.Config;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class MixinBlock {
 	@Inject(method = "getOffset", at = @At("HEAD"), cancellable = true)
 	private void onGetOffset(IBlockState state, IBlockAccess worldIn, BlockPos pos, CallbackInfoReturnable<Vec3d> cir) {
-		if (LiteModUsefulMod.config.isCenteredPlantsEnabled) {
+		if (Config.INSTANCE.isCenteredPlantsEnabled()) {
 			cir.setReturnValue(Vec3d.ZERO);
 		}
 	}

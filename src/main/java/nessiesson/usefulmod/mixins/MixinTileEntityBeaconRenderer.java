@@ -1,7 +1,7 @@
 package nessiesson.usefulmod.mixins;
 
 import com.mumfrey.liteloader.gl.GL;
-import nessiesson.usefulmod.LiteModUsefulMod;
+import nessiesson.usefulmod.config.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderGlobal;
@@ -18,24 +18,24 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.awt.*;
 
 @Mixin(TileEntityBeaconRenderer.class)
-public abstract class MixinTileEntityBeaconRenderer implements IMixinEntityBeacon {
+public abstract class MixinTileEntityBeaconRenderer {
 	@Inject(method = "render", at = @At("RETURN"))
 	private void render(TileEntityBeacon te, double x, double y, double z, float partialTicks, int destroyStage, float alpha, CallbackInfo ci) {
-		if (!LiteModUsefulMod.config.isShowBeaconRangeEnabled) {
+		if (!Config.INSTANCE.isShowBeaconRangeEnabled()) {
 			return;
 		}
-		if (((IMixinEntityBeacon) te).getIsComplete() && te.getLevels() > 0) {
-			EntityPlayer player = Minecraft.getMinecraft().player;
-			double d0 = (double) (te.getLevels() * 10 + 10);
-			double d1 = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) partialTicks;
-			double d2 = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double) partialTicks;
-			double d3 = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double) partialTicks;
+		if (((IEntityBeacon) te).getIsComplete() && te.getLevels() > 0) {
+			final EntityPlayer player = Minecraft.getMinecraft().player;
+			final double d0 = te.getLevels() * 10 + 10;
+			final double d1 = player.lastTickPosX + (player.posX - player.lastTickPosX) * (double) partialTicks;
+			final double d2 = player.lastTickPosY + (player.posY - player.lastTickPosY) * (double) partialTicks;
+			final double d3 = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * (double) partialTicks;
 
-			BlockPos pos = te.getPos();
+			final BlockPos pos = te.getPos();
 			// It's not good, but it seems reasonably random.
-			int colour = pos.getX() + 101 * pos.getZ() + 41942 * pos.getY();
-			float[] colours = new Color((int) (colour * (16777215.0 / 2611456.0))).getRGBColorComponents(null);
-			AxisAlignedBB axisalignedbb = (new AxisAlignedBB(pos)).offset(-d1, -d2, -d3).grow(d0).expand(0.0D, (double) te.getWorld().getHeight(), 0.0D);
+			final int colour = pos.getX() + 101 * pos.getZ() + 41942 * pos.getY();
+			final float[] colours = new Color((int) (colour * (16777215.0 / 2611456.0))).getRGBColorComponents(null);
+			final AxisAlignedBB axisalignedbb = (new AxisAlignedBB(pos)).offset(-d1, -d2, -d3).grow(d0).expand(0.0D, te.getWorld().getHeight(), 0.0D);
 
 			GlStateManager.depthFunc(GL.GL_LESS);
 			GlStateManager.depthMask(false);
@@ -50,7 +50,7 @@ public abstract class MixinTileEntityBeaconRenderer implements IMixinEntityBeaco
 			GlStateManager.enableLighting();
 			GlStateManager.enableFog();
 			GlStateManager.depthMask(true);
-			GlStateManager.depthFunc(515);
+			GlStateManager.depthFunc(GL.GL_EQUAL);
 		}
 	}
 }

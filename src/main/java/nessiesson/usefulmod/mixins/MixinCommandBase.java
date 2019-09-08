@@ -1,6 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
-import nessiesson.usefulmod.LiteModUsefulMod;
+import nessiesson.usefulmod.config.Config;
 import net.minecraft.command.CommandBase;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class MixinCommandBase {
 	@Inject(method = "checkPermission", at = @At("HEAD"), cancellable = true)
 	private void overrideCommandPermissions(CallbackInfoReturnable<Boolean> cir) {
-		if (LiteModUsefulMod.config.isAlwaysSingleplayerCheatedEnabled) {
+		if (Config.INSTANCE.isAlwaysSingleplayerCheatedEnabled()) {
 			cir.setReturnValue(true);
 		}
 	}

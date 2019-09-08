@@ -1,6 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
-import nessiesson.usefulmod.LiteModUsefulMod;
+import nessiesson.usefulmod.config.Config;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.BlockSlime;
 import net.minecraft.block.material.Material;
@@ -20,7 +20,7 @@ public abstract class MixinBlockSlime extends BlockBreakable {
 
 	@Inject(method = "onEntityWalk", at = @At("HEAD"), cancellable = true)
 	private void onEntityWalkOnSlime(World worldIn, BlockPos pos, Entity entityIn, CallbackInfo ci) {
-		if (!LiteModUsefulMod.config.isNoSlimeSlowdownEnabled) {
+		if (!Config.INSTANCE.isNoSlimeSlowdownEnabled()) {
 			return;
 		}
 

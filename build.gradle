@@ -1,80 +1,62 @@
 buildscript {
 	repositories {
-		mavenLocal()
-		mavenCentral()
-		maven {
-			name = "sonatype"
-			url = "https://oss.sonatype.org/content/repositories/snapshots/"
-		}
-		maven {
-			name = "forge"
-			url = "http://files.minecraftforge.net/maven"
-		}
-		maven {
-			name = "sponge"
-			url = "http://repo.spongepowered.org/maven"
-		}
+		jcenter()
+		maven { url = "https://files.minecraftforge.net/maven" }
+		maven { url = "https://repo.spongepowered.org/maven" }
 	}
 	dependencies {
-		classpath "net.minecraftforge.gradle:ForgeGradle:$project.forgeGradleVersion"
-		classpath "org.spongepowered:mixingradle:$project.mixinGradleVersion"
+		classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
+		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:1.3.41"
+		classpath "org.spongepowered:mixingradle:0.6-SNAPSHOT"
 	}
 }
 
 apply plugin: "net.minecraftforge.gradle.liteloader"
+apply plugin: "kotlin"
 apply plugin: "org.spongepowered.mixin"
 
-version = project.version
-group = project.group
-archivesBaseName = "$project.name-$project.mcVersion"
+version = "1.0.0"
+def mcVersion = "1.12"
+def modName = "UsefulMod".toString()
+def modId = modName.toLowerCase()
+group = "nessiesson.$modId"
 
 minecraft {
-	// these values are defined in the gradle.properties file, so that this file does not need to be altered
-	version = project.mcVersion
-	mappings = project.mcMappings
+	version = mcVersion
+	mappings = "stable_39"
 	runDir = "run"
 	makeObfSourceJar = false
 
 	replace "@VERSION@", project.version
-	replace "@NAME@", project.name
-}
-
-sourceSets {
-	main {
-		// Refmap declaration must match the refmap name specified in the json config
-		ext.refMap = "mixins.usefulmod.refmap.json"
-	}
-}
-
-dependencies {
-	// For Mixin auditing.
-	compile "org.jetbrains.java.decompiler:fernflower:sponge-SNAPSHOT"
+	replace "@NAME@", modName
 }
 
 mixin {
-	// liteloader does not do runtime deobfuscation, so in production we use "notch names", mixin needs to know this
 	defaultObfuscationEnv notch
+	add sourceSets.main, "mixins.${modId}.refmap.json"
 }
 
-libsDirName = "../libs"
-
-litemod {
-	json {
-		author = "nessie"
-		name = project.name
-		mcversion = project.mcVersion
-		description = "A very UsefulMod."
-		mixinConfigs += "mixins.usefulmod.json"
-
-	}
+litemod.json {
+	author = "nessie".toString()
+	name = modName
+	mcversion = mcVersion
+	description = "A very UsefulMod."
+	mixinConfigs += "mixins.${modId}.json".toString()
 }
 
 jar {
 	classifier = ""
-	baseName = archivesBaseName
+	baseName = "$modName-$mcVersion"
 	from litemod.outputs
 }
 
 runClient {
 	jvmArgs "-Dmixin.debug=true"
 }
+
+repositories {
+	jcenter()
+	maven { url "http://maven.shadowfacts.net/" }
+}
+
+dependencies.compile "net.shadowfacts:Forgelin:1.8.3"

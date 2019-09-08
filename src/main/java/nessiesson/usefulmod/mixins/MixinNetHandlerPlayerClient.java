@@ -1,6 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
-import nessiesson.usefulmod.LiteModUsefulMod;
+import nessiesson.usefulmod.config.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.network.NetHandlerPlayClient;
 import net.minecraft.entity.Entity;
@@ -21,7 +21,7 @@ public abstract class MixinNetHandlerPlayerClient {
 			target = "Lnet/minecraft/client/Minecraft;displayGuiScreen(Lnet/minecraft/client/gui/GuiScreen;)V"),
 			locals = LocalCapture.CAPTURE_FAILHARD)
 	private void onPlayerDeath(SPacketCombatEvent packetIn, CallbackInfo ci, Entity entity) {
-		if (!LiteModUsefulMod.config.isDeathLocationEnabled) {
+		if (!Config.INSTANCE.isDeathLocationEnabled()) {
 			return;
 		}
 
@@ -35,7 +35,7 @@ public abstract class MixinNetHandlerPlayerClient {
 			target = "Lnet/minecraft/client/Minecraft;displayGuiScreen(Lnet/minecraft/client/gui/GuiScreen;)V",
 			shift = At.Shift.BEFORE))
 	private void onPlayerDeath(SPacketCombatEvent packetIn, CallbackInfo ci) {
-		if (LiteModUsefulMod.config.isRespawnOnDeathEnabled) {
+		if (Config.INSTANCE.isRespawnOnDeathEnabled()) {
 			Minecraft.getMinecraft().player.respawnPlayer();
 		}
 	}
