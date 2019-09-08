@@ -1,6 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
-import nessiesson.usefulmod.config.Config;
+import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.client.network.NetHandlerPlayClient;
@@ -19,16 +19,14 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class MixinPlayerControllerMP {
 	@Inject(method = "clickBlock", at = @At(value = "INVOKE", shift = At.Shift.AFTER, target = "Lnet/minecraft/client/multiplayer/PlayerControllerMP;onPlayerDestroyBlock(Lnet/minecraft/util/math/BlockPos;)Z"))
 	private void onInstantMine(BlockPos loc, EnumFacing face, CallbackInfoReturnable<Boolean> cir) {
-		final NetHandlerPlayClient connection = Minecraft.getMinecraft().getConnection();
-		connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.ABORT_DESTROY_BLOCK, loc, face));
+		if (LiteModUsefulMod.Companion.getConfig().miningGhostBlockFix) {
+			final NetHandlerPlayClient connection = Minecraft.getMinecraft().getConnection();
+			connection.sendPacket(new CPacketPlayerDigging(CPacketPlayerDigging.Action.ABORT_DESTROY_BLOCK, loc, face));
+		}
 	}
 
 	@ModifyConstant(method = "onPlayerDamageBlock", constant = @Constant(intValue = 5, ordinal = 1))
 	private int postBlockMine(int blockHitDelay) {
-		if (Config.INSTANCE.isTestEnabled()) {
-			return 0;
-		} else {
-			return 5;
-		}
+		return LiteModUsefulMod.Companion.getConfig().clickBlockMining ? 0 : 5;
 	}
 }

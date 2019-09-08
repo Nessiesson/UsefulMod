@@ -1,6 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
-import nessiesson.usefulmod.config.Config;
+import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -18,6 +18,6 @@ public abstract class MixinEntityItem extends Entity {
 
 	@Redirect(method = "onUpdate", at = @At(value = "FIELD", target = "Lnet/minecraft/world/World;isRemote:Z", opcode = Opcodes.GETFIELD, ordinal = 0))
 	private boolean clientPushOutOfBlocks(World world) {
-		return !Config.INSTANCE.isSmoothItemMovementEnabled() && !Minecraft.getMinecraft().isSingleplayer();
+		return !LiteModUsefulMod.Companion.getConfig().smoothItemMovement && !Minecraft.getMinecraft().isSingleplayer();
 	}
 }

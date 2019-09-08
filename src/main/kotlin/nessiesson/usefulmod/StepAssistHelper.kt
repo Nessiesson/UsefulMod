@@ -1,6 +1,5 @@
 package nessiesson.usefulmod
 
-import nessiesson.usefulmod.config.Config
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.init.MobEffects
 
@@ -10,7 +9,7 @@ internal class StepAssistHelper {
 	}
 
 	private fun getStepAmount(player: EntityPlayer): Float {
-		if (!Config.isJumpBoostStepAssistEnabled || !player.isPotionActive(MobEffects.JUMP_BOOST)) {
+		if (!LiteModUsefulMod.config.jumpBoostStepAssist || !player.isPotionActive(MobEffects.JUMP_BOOST)) {
 			return 0.6f
 		}
 

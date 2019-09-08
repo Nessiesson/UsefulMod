@@ -28,13 +28,15 @@ object AreaSelectionRenderer {
 		val d1 = player.lastTickPosY + (player.posY - player.lastTickPosY) * partialTicks
 		val d2 = player.lastTickPosZ + (player.posZ - player.lastTickPosZ) * partialTicks
 
-		val p0: BlockPos
-		var p1: BlockPos
-		val p2: BlockPos
+		var p0: BlockPos? = null
+		var p1: BlockPos? = null
+		var p2: BlockPos? = null
 
-		p0 = CommandBase.parseBlockPos(player, args, 1, false)
-		p1 = CommandBase.parseBlockPos(player, args, 4, false)
-		p2 = CommandBase.parseBlockPos(player, args, 7, false)
+		// @formatter:off
+		try { p0 = CommandBase.parseBlockPos(player, args, 1, false) } catch (e: Exception) { /* noop */ }
+		try { p1 = CommandBase.parseBlockPos(player, args, 4, false) } catch (e: Exception) { /* noop */ }
+		try { p2 = CommandBase.parseBlockPos(player, args, 7, false) } catch (e: Exception) { /* noop */ }
+		// @formatter:on
 
 		GlStateManager.depthMask(false)
 		GlStateManager.disableTexture2D()

@@ -1,5 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
+import nessiesson.usefulmod.LiteModUsefulMod;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
@@ -8,6 +9,6 @@ import org.spongepowered.asm.mixin.injection.ModifyConstant;
 public abstract class MixinNetworkManager$5 {
 	@ModifyConstant(method = "initChannel", constant = @Constant(intValue = 30), remap = false)
 	private static int noTimeout(int timeoutSeconds) {
-		return 0;
+		return LiteModUsefulMod.Companion.getConfig().noTimeout ? 0 : timeoutSeconds;
 	}
 }

@@ -1,10 +1,9 @@
 package nessiesson.usefulmod.mixins;
 
 import com.mojang.authlib.GameProfile;
-import nessiesson.usefulmod.config.Config;
+import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,13 +18,8 @@ public abstract class MixinEntityPlayerSP extends AbstractClientPlayer {
 
 	@Inject(method = "canUseCommand", at = @At("HEAD"), cancellable = true)
 	private void overrideCommandPermissions(int permLevel, String commandName, CallbackInfoReturnable<Boolean> cir) {
-		if (Config.INSTANCE.isAlwaysSingleplayerCheatedEnabled()) {
+		if (LiteModUsefulMod.Companion.getConfig().alwaysSingleplayerCheats) {
 			cir.setReturnValue(true);
 		}
-	}
-
-	@Inject(method = "isOpenBlockSpace", at = @At("HEAD"), cancellable = true)
-	private void adjustIsOpenBlockSpace(BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
-		cir.setReturnValue(!this.world.getBlockState(pos).isNormalCube());
 	}
 }

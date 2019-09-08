@@ -1,6 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
-import nessiesson.usefulmod.config.Config;
+import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleDigging;
 import net.minecraft.world.World;
@@ -17,7 +17,7 @@ public abstract class MixinParticleDigging extends Particle {
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void removeRandomParticleMotion(CallbackInfo ci) {
-		if (Config.INSTANCE.getInsaneBlockBreakingParticles()) {
+		if (LiteModUsefulMod.Companion.getConfig().insaneBlockBreakingParticles) {
 			final double multiplier = 3.0;
 			this.motionX *= multiplier;
 			this.motionY *= multiplier;

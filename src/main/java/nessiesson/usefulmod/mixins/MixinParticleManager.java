@@ -1,6 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
-import nessiesson.usefulmod.config.Config;
+import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.particle.ParticleManager;
 import net.minecraft.util.math.BlockPos;
@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class MixinParticleManager {
 	@Inject(method = "addBlockDestroyEffects", at = @At("HEAD"), cancellable = true)
 	private void onAddBlockDestroyEffects(BlockPos pos, IBlockState state, CallbackInfo ci) {
-		if (!Config.INSTANCE.getShowBlockBreakingParticles()) {
+		if (!LiteModUsefulMod.Companion.getConfig().showBlockBreakingParticles) {
 			ci.cancel();
 		}
 	}

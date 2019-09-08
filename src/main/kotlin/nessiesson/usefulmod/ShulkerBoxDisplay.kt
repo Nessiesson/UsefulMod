@@ -1,6 +1,5 @@
 package nessiesson.usefulmod
 
-import nessiesson.usefulmod.config.Config
 import net.minecraft.block.BlockShulkerBox
 import net.minecraft.client.Minecraft
 import net.minecraft.client.gui.Gui
@@ -21,7 +20,7 @@ object ShulkerBoxDisplay {
 	private val WIDGET_RESOURCE = ResourceLocation("usefulmod", "textures/shulker_widget.png")
 
 	fun handleShulkerBoxDisplayRenderer(stack: ItemStack?, x: Int, y: Int, gui: Gui) {
-		if (!Config.isShulkerBoxDisplayEnabled) {
+		if (!LiteModUsefulMod.config.shulkerBoxDisplay) {
 			return
 		}
 
@@ -66,7 +65,7 @@ object ShulkerBoxDisplay {
 	}
 
 	fun addShulkerBoxTooltop(stack: ItemStack, tooltip: MutableList<String>) {
-		if (!Config.isShulkerBoxDisplayEnabled) {
+		if (!LiteModUsefulMod.config.shulkerBoxDisplay) {
 			return
 		}
 

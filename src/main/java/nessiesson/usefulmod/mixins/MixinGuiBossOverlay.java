@@ -1,5 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
+import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.client.gui.GuiBossOverlay;
 import net.minecraft.client.gui.ScaledResolution;
 import org.spongepowered.asm.mixin.Mixin;
@@ -10,6 +11,6 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 public abstract class MixinGuiBossOverlay {
 	@Redirect(method = "renderBossHealth", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/ScaledResolution;getScaledHeight()I"))
 	private int onlyOneBossBar(ScaledResolution scaledResolution) {
-		return 3 * 12;
+		return LiteModUsefulMod.Companion.getConfig().showOneBossBar ? scaledResolution.getScaledHeight() : 36;
 	}
 }

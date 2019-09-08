@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+// TODO: Port to Kotlin maybe.
 @Mixin(KeyBinding.class)
 public abstract class MixinKeyBinding {
 	private static final Map<Integer, List<MixinKeyBinding>> listOfBindings = Maps.newHashMap();

@@ -1,6 +1,7 @@
 package nessiesson.usefulmod.mixins;
 
-import net.minecraft.client.resources.I18n;
+import kotlin.Pair;
+import nessiesson.usefulmod.MixinCode;
 import net.minecraft.client.settings.GameSettings;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -19,41 +20,19 @@ public abstract class MixinGameSettings {
 
 	@Inject(method = "setOptionFloatValue", at = @At("HEAD"), cancellable = true)
 	private void overrideGammaValue(GameSettings.Options settingsOption, float value, CallbackInfo ci) {
-		if (settingsOption != GameSettings.Options.GAMMA) {
-			return;
+		Pair<Boolean, Float> pair = MixinCode.INSTANCE.onSetOptionFloatValue(settingsOption, value);
+		if (pair.getFirst()) {
+			ci.cancel();
 		}
-		ci.cancel();
 
-		if (value >= 0.95F) {
-			value = 1000.0F;
-		} else if (value >= 0.9F) {
-			value = 1.0F;
-		} else {
-			value = Math.min(1.0F, value / 0.9F);
-		}
-		this.gammaSetting = value;
+		this.gammaSetting = pair.getSecond();
 	}
 
 	@Inject(method = "getKeyBinding", at = @At("HEAD"), cancellable = true)
-	private void overrideGammaText(GameSettings.Options settingOption, CallbackInfoReturnable<String> cir) {
-		if (settingOption != GameSettings.Options.GAMMA) {
-			return;
+	private void overrideGammaText(GameSettings.Options option, CallbackInfoReturnable<String> cir) {
+		Pair<Boolean, String> pair = MixinCode.INSTANCE.renderBrightnessText(option, this.getOptionFloatValue(option));
+		if (pair.getFirst()) {
+			cir.setReturnValue(pair.getSecond());
 		}
-		cir.cancel();
-
-		final float f = this.getOptionFloatValue(settingOption);
-		String s = I18n.format(settingOption.getTranslation()) + ": ";
-
-		if (f > 1.0F) {
-			s += I18n.format("usefulmod.options.gamma.fullbright");
-		} else if (f > 0.95F) {
-			s += I18n.format("options.gamma.max");
-		} else if (f > 0.0F) {
-			s += "+" + (int) (f * 100.0F) + "%";
-		} else {
-			s += I18n.format("options.gamma.min");
-		}
-
-		cir.setReturnValue(s);
 	}
 }
