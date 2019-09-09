@@ -9,6 +9,10 @@ class StepAssistHelper {
 	}
 
 	private float getStepAmount(EntityPlayer player) {
+		if(LiteModUsefulMod.config.stepAssist) {
+			return player.isSneaking() ? 0.9F : 1.5F;
+		}
+
 		if (!LiteModUsefulMod.config.jumpBoostStepAssist || !player.isPotionActive(MobEffects.JUMP_BOOST)) {
 			return 0.6F;
 		}

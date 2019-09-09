@@ -62,6 +62,8 @@ public class Config implements Exposable {
 	public boolean craftingHax = true;
 	@Expose
 	public boolean noLight = true;
+	@Expose
+	public boolean stepAssist = false;
 
 	public Config() {
 		LiteLoader.getInstance().registerExposable(this, null);
