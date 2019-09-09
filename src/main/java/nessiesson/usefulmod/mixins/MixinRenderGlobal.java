@@ -24,7 +24,9 @@ public abstract class MixinRenderGlobal {
 
 	@Inject(method = "notifyLightSet", at = @At("HEAD"), cancellable = true)
 	private void noLight(BlockPos pos, CallbackInfo ci) {
-		ci.cancel();
+		if (LiteModUsefulMod.config.noLight) {
+			ci.cancel();
+		}
 	}
 
 	@Inject(method = "isOutlineActive", at = @At("HEAD"), cancellable = true)

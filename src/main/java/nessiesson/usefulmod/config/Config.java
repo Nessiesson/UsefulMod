@@ -60,6 +60,8 @@ public class Config implements Exposable {
 	public boolean noTimeout = false;
 	@Expose
 	public boolean craftingHax = true;
+	@Expose
+	public boolean noLight = true;
 
 	public Config() {
 		LiteLoader.getInstance().registerExposable(this, null);
