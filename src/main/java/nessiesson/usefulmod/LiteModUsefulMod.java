@@ -51,7 +51,7 @@ public class LiteModUsefulMod implements Tickable, Configurable {
 			player.connection.sendPacket(new CPacketPlayer(true));
 		}
 
-		if (player.capabilities.isFlying) {
+		if (LiteModUsefulMod.config.flightInertiaCancellation  && player.capabilities.isFlying) {
 			final GameSettings settings = minecraft.gameSettings;
 			if (!(GameSettings.isKeyDown(settings.keyBindForward) || GameSettings.isKeyDown(settings.keyBindBack) || GameSettings.isKeyDown(settings.keyBindLeft) || GameSettings.isKeyDown(settings.keyBindRight))) {
 				player.motionX = player.motionZ = 0;

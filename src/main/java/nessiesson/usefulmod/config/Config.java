@@ -9,25 +9,25 @@ import com.mumfrey.liteloader.modconfig.ExposableOptions;
 @ExposableOptions(strategy = ConfigStrategy.Unversioned, filename = "usefulmod")
 public class Config implements Exposable {
 	@Expose
-	public boolean shulkerBoxDisplay = true;
+	public boolean shulkerBoxDisplay = false;
 	@Expose
-	public boolean deathLocation = true;
+	public boolean deathLocation = false;
 	@Expose
-	public boolean miningGhostBlockFix = true;
+	public boolean miningGhostBlockFix = false;
 	@Expose
 	public boolean clickBlockMining = false;
 	@Expose
-	public boolean centeredPlants = true;
+	public boolean centeredPlants = false;
 	@Expose
-	public boolean clearLava = true;
+	public boolean clearLava = false;
 	@Expose
-	public boolean smoothItemMovement = true;
+	public boolean smoothItemMovement = false;
 	@Expose
 	public boolean showBeaconRange = false;
 	@Expose
 	public boolean showBlockBreakingParticles = true;
 	@Expose
-	public boolean jumpBoostStepAssist = true;
+	public boolean jumpBoostStepAssist = false;
 	@Expose
 	public boolean respawnOnDeath = false;
 	@Expose
@@ -35,35 +35,37 @@ public class Config implements Exposable {
 	@Expose
 	public boolean noFall = false;
 	@Expose
-	public boolean alwaysSingleplayerCheats = true;
+	public boolean alwaysSingleplayerCheats = false;
 	@Expose
 	public boolean showScoreboard = true;
 	@Expose
-	public boolean sortEnchantmentTooltip = true;
+	public boolean sortEnchantmentTooltip = false;
 	@Expose
-	public boolean insaneBlockBreakingParticles = true;
+	public boolean insaneBlockBreakingParticles = false;
 	@Expose
-	public boolean showDeathAnimation = false;
+	public boolean showDeathAnimation = true;
 	@Expose
-	public boolean showServerNames = false;
+	public boolean showServerNames = true;
 	@Expose
-	public boolean showTeamMenu = false;
+	public boolean showTeamMenu = true;
 	@Expose
-	public boolean showSnowDripParticles = true;
+	public boolean showSnowDripParticles = false;
 	@Expose
-	public boolean extendedChat = true;
+	public boolean extendedChat = false;
 	@Expose
-	public boolean showItemAttributes = false;
+	public boolean showItemAttributes = true;
 	@Expose
-	public boolean showOneBossBar = true;
+	public boolean showOneBossBar = false;
 	@Expose
 	public boolean noTimeout = false;
 	@Expose
-	public boolean craftingHax = true;
+	public boolean craftingHax = false;
 	@Expose
-	public boolean noLight = true;
+	public boolean noLight = false;
 	@Expose
 	public boolean stepAssist = false;
+	@Expose
+	public boolean flightInertiaCancellation = false;
 
 	public Config() {
 		LiteLoader.getInstance().registerExposable(this, null);

@@ -37,6 +37,7 @@
 		"MixinShulkerBoxDisplayRenderer",
 		"MixinSpectatorMenu",
 		"MixinTeleportToPlayer",
-		"MixinTileEntityBeaconRenderer"
+		"MixinTileEntityBeaconRenderer",
+		"MixinWorld"
 	]
 }
