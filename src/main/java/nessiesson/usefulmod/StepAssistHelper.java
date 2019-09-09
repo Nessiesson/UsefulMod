@@ -9,14 +9,14 @@ class StepAssistHelper {
 	}
 
 	private float getStepAmount(EntityPlayer player) {
-		if (!LiteModUsefulMod.config.isJumpBoostStepAssistEnabled || !player.isPotionActive(MobEffects.JUMP_BOOST)) {
+		if (!LiteModUsefulMod.config.jumpBoostStepAssist || !player.isPotionActive(MobEffects.JUMP_BOOST)) {
 			return 0.6F;
 		}
 
 		if (player.isSneaking()) {
 			return 0.9F;
+		} else {
+			return 1F + 0.25F * player.getActivePotionEffect(MobEffects.JUMP_BOOST).getAmplifier();
 		}
-
-		return 1.0F + 0.25F * player.getActivePotionEffect(MobEffects.JUMP_BOOST).getAmplifier();
 	}
 }

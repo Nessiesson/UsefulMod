@@ -13,9 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+// TODO: Port to Kotlin maybe.
 @Mixin(KeyBinding.class)
 public abstract class MixinKeyBinding {
-
 	private static final Map<Integer, List<MixinKeyBinding>> listOfBindings = Maps.newHashMap();
 	@Shadow
 	@Final
@@ -33,7 +33,6 @@ public abstract class MixinKeyBinding {
 
 		if (keyCode != 0) {
 			List<MixinKeyBinding> bindingsOnKey = listOfBindings.get(keyCode);
-
 			if (bindingsOnKey != null) {
 				for (MixinKeyBinding keyBinding : bindingsOnKey) {
 					keyBinding.pressTime++;
@@ -63,7 +62,6 @@ public abstract class MixinKeyBinding {
 	@Inject(method = "resetKeyBindingArrayAndHash", at = @At("HEAD"), cancellable = true)
 	private static void resetKeyBindingArrayAndHash(CallbackInfo ci) {
 		ci.cancel();
-
 		listOfBindings.clear();
 
 		for (MixinKeyBinding keyBind : KEYBIND_ARRAY.values()) {

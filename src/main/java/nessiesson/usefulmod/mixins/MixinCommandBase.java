@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class MixinCommandBase {
 	@Inject(method = "checkPermission", at = @At("HEAD"), cancellable = true)
 	private void overrideCommandPermissions(CallbackInfoReturnable<Boolean> cir) {
-		if (LiteModUsefulMod.config.isAlwaysSingleplayerCheatedEnabled) {
+		if (LiteModUsefulMod.config.alwaysSingleplayerCheats) {
 			cir.setReturnValue(true);
 		}
 	}

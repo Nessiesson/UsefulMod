@@ -12,10 +12,6 @@ public class MixinGlStateManager {
 	private static float adjustFogDensity(float fogDensity) {
 		// In vanilla code, this method is only called with fogdentity = 2.0F when in lava.
 		// We're changing the fog density in here to remain compatible with OptiFine.
-		if (fogDensity == 2.0F && LiteModUsefulMod.config.isClearLavaEnabled) {
-			return 0.0F;
-		} else {
-			return fogDensity;
-		}
+		return fogDensity == 2.0F && LiteModUsefulMod.config.clearLava ? 0.0f : fogDensity;
 	}
 }

@@ -7,6 +7,7 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.ItemBlock;
@@ -23,18 +24,17 @@ public class ShulkerBoxDisplay {
 	private static final ResourceLocation WIDGET_RESOURCE = new ResourceLocation("usefulmod", "textures/shulker_widget.png");
 
 	public static void handleShulkerBoxDisplayRenderer(ItemStack stack, int x, int y, Gui gui) {
-		if (!LiteModUsefulMod.config.isShulkerBoxDisplayEnabled) {
+		if (!LiteModUsefulMod.config.shulkerBoxDisplay) {
 			return;
 		}
 
 		if (stack != null && stack.getItem() instanceof ItemShulkerBox && stack.hasTagCompound() && GuiScreen.isShiftKeyDown()) {
-			NBTTagCompound cmp = ItemNBTHelper.getCompoundOrNull(stack, "BlockEntityTag");
+			NBTTagCompound cmp = getCompoundOrNull(stack);
 			if (cmp != null && cmp.hasKey("Items", 9)) {
 				final int texWidth = 172;
 				final int texHeight = 64;
 
-				final int currentX = x;
-				final int currentY = y - texHeight - 18;
+				final int dy = y - texHeight - 18;
 
 				GlStateManager.pushMatrix();
 				RenderHelper.enableGUIStandardItemLighting();
@@ -48,7 +48,7 @@ public class ShulkerBoxDisplay {
 				final float[] colours = dye.getColorComponentValues();
 				GlStateManager.color(colours[0], colours[1], colours[2]);
 
-				gui.drawTexturedModalRect(currentX, currentY, 0, 0, texWidth, texHeight);
+				gui.drawTexturedModalRect(x, dy, 0, 0, texWidth, texHeight);
 
 				NonNullList<ItemStack> itemList = NonNullList.withSize(27, ItemStack.EMPTY);
 				ItemStackHelper.loadAllItems(cmp, itemList);
@@ -59,8 +59,8 @@ public class ShulkerBoxDisplay {
 				int i = 0;
 				for (ItemStack itemstack : itemList) {
 					if (!itemstack.isEmpty()) {
-						final int xp = currentX + 6 + (i % 9) * 18;
-						final int yp = currentY + 6 + (i / 9) * 18;
+						final int xp = x + 6 + (i % 9) * 18;
+						final int yp = dy + 6 + (i / 9) * 18;
 
 						render.renderItemAndEffectIntoGUI(itemstack, xp, yp);
 						render.renderItemOverlays(mc.fontRenderer, itemstack, xp, yp);
@@ -75,19 +75,28 @@ public class ShulkerBoxDisplay {
 		}
 	}
 
-	public static void addShulkerBoxTooltop(ItemStack stack, List<String> tooltip) {
-		if (!LiteModUsefulMod.config.isShulkerBoxDisplayEnabled) {
+	public static void addShulkerBoxTooltip(ItemStack stack, List<String> tooltip) {
+		if (!LiteModUsefulMod.config.shulkerBoxDisplay) {
 			return;
 		}
 
 		if (!stack.isEmpty() && stack.getItem() instanceof ItemShulkerBox && stack.hasTagCompound()) {
-			final NBTTagCompound cmp = ItemNBTHelper.getCompoundOrNull(stack, "BlockEntityTag");
+			final NBTTagCompound cmp = getCompoundOrNull(stack);
 			if (cmp != null && cmp.hasKey("Items", 9)) {
 
 				if (!GuiScreen.isShiftKeyDown()) {
-					tooltip.add(1, "Hold Shift to see contents");
+					tooltip.add(1, I18n.format("usefulmod.ui.mention_shift"));
 				}
 			}
+		}
+	}
+
+	private static NBTTagCompound getCompoundOrNull(ItemStack stack) {
+		final NBTTagCompound compound = stack.getTagCompound();
+		if (compound != null && compound.hasKey("BlockEntityTag")) {
+			return compound.getCompoundTag("BlockEntityTag");
+		} else {
+			return null;
 		}
 	}
 }

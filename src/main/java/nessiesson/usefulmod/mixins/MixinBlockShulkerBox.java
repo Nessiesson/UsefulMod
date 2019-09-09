@@ -16,6 +16,6 @@ import java.util.List;
 public abstract class MixinBlockShulkerBox {
 	@Inject(method = "addInformation", at = @At(value = "HEAD"))
 	private void postGetTooltip(ItemStack stack, World worldIn, List<String> tooltip, ITooltipFlag flagIn, CallbackInfo ci) {
-		ShulkerBoxDisplay.addShulkerBoxTooltop(stack, tooltip);
+		ShulkerBoxDisplay.addShulkerBoxTooltip(stack, tooltip);
 	}
 }
