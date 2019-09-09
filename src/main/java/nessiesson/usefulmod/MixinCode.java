@@ -86,7 +86,7 @@ public class MixinCode {
 			return new ImmutablePair<>(false, "");
 		}
 
-		String s = I18n.format(option.getTranslation()) + "$ ";
+		String s = I18n.format(option.getTranslation()) + " ";
 		if (value > 1F) {
 			s += I18n.format("usefulmod.options.gamma.fullbright");
 		} else if (value > 0.95F) {
