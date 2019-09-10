@@ -21,6 +21,7 @@
 		"MixinGuiBossOverlay",
 		"MixinGuiChat",
 		"MixinGuiIngame",
+		"MixinGuiRecipeBook",
 		"MixinGuiScreen",
 		"MixinItemStack",
 		"MixinKeyBinding",

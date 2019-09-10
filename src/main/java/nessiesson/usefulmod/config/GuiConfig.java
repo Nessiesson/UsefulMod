@@ -24,7 +24,7 @@ public class GuiConfig extends AbstractConfigPanel {
 				this.addControl(new GuiCheckbox(id, 0, SPACING * id++, f.getName()), control -> {
 					control.checked = !control.checked;
 					try {
-						f.set(config, control.checked);
+						f.setBoolean(config, control.checked);
 					} catch (IllegalAccessException ignored) {
 					}
 				}).checked = f.getBoolean(config);
