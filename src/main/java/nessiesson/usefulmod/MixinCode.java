@@ -57,10 +57,12 @@ public class MixinCode {
 		final Minecraft mc = Minecraft.getMinecraft();
 		final PlayerControllerMP controller = mc.playerController;
 		final EntityPlayerSP player = mc.player;
-		if (GuiScreen.isShiftKeyDown() && GuiScreen.isCtrlKeyDown()) {
-			controller.windowClick(id, 0, 1, ClickType.THROW, player);
-		} else if (GuiScreen.isShiftKeyDown() && GuiScreen.isAltKeyDown()) {
-			controller.windowClick(id, 0, 1, ClickType.QUICK_MOVE, player);
+		if (GuiScreen.isCtrlKeyDown()) {
+			if (GuiScreen.isShiftKeyDown()) {
+				controller.windowClick(id, 0, 1, ClickType.QUICK_MOVE, player);
+			} else if (GuiScreen.isAltKeyDown()) {
+				controller.windowClick(id, 0, 1, ClickType.THROW, player);
+			}
 		}
 	}
 
