@@ -57,14 +57,15 @@ public class MixinCode {
 		final Minecraft mc = Minecraft.getMinecraft();
 		final PlayerControllerMP controller = mc.playerController;
 		final EntityPlayerSP player = mc.player;
-		if (GuiScreen.isCtrlKeyDown()) {
-			if (GuiScreen.isShiftKeyDown()) {
-				controller.windowClick(id, 0, 1, ClickType.QUICK_MOVE, player);
-			} else if (GuiScreen.isAltKeyDown()) {
+		if (GuiScreen.isShiftKeyDown() && GuiScreen.isCtrlKeyDown()) {
+			if (GuiScreen.isAltKeyDown()) {
 				controller.windowClick(id, 0, 1, ClickType.THROW, player);
+			} else {
+				controller.windowClick(id, 0, 1, ClickType.QUICK_MOVE, player);
 			}
 		}
 	}
+
 
 	public static Pair<Boolean, Float> onSetOptionFloatValue(GameSettings.Options option, float oldValue) {
 		float value = oldValue;
