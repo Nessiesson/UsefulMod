@@ -66,6 +66,8 @@ public class Config implements Exposable {
 	public boolean stepAssist = false;
 	@Expose
 	public boolean flightInertiaCancellation = false;
+	@Expose
+	public Boolean elytraHax = false;
 
 	public Config() {
 		LiteLoader.getInstance().registerExposable(this, null);

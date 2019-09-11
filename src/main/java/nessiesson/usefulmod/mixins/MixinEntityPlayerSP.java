@@ -4,6 +4,7 @@ import com.mojang.authlib.GameProfile;
 import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.client.entity.AbstractClientPlayer;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,5 +22,10 @@ public abstract class MixinEntityPlayerSP extends AbstractClientPlayer {
 		if (LiteModUsefulMod.config.alwaysSingleplayerCheats) {
 			cir.setReturnValue(true);
 		}
+	}
+
+	@Inject(method = "isOpenBlockSpace", at = @At("HEAD"), cancellable = true)
+	private void elytraHax(BlockPos pos, CallbackInfoReturnable<Boolean> cir) {
+		cir.setReturnValue(LiteModUsefulMod.config.elytraHax && !this.world.getBlockState(pos).isNormalCube());
 	}
 }
