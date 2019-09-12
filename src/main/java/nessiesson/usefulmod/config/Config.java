@@ -9,6 +9,8 @@ import com.mumfrey.liteloader.modconfig.ExposableOptions;
 @ExposableOptions(strategy = ConfigStrategy.Unversioned, filename = "usefulmod")
 public class Config implements Exposable {
 	@Expose
+	public boolean snapAim = false;
+	@Expose
 	public boolean shulkerBoxDisplay = false;
 	@Expose
 	public boolean deathLocation = false;
