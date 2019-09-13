@@ -13,6 +13,7 @@
 		"MixinBlockShulkerBox",
 		"MixinBlockSnow",
 		"MixinCommandBase",
+		"MixinEntity",
 		"MixinEntityItem",
 		"MixinEntityPlayerSP",
 		"MixinEntityRenderer",
