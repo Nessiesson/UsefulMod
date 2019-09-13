@@ -70,6 +70,8 @@ public class Config implements Exposable {
 	public boolean flightInertiaCancellation = false;
 	@Expose
 	public boolean elytraHax = false;
+	@Expose
+	public boolean alwaysRenderTileEntities = false;
 
 	public Config() {
 		LiteLoader.getInstance().registerExposable(this, null);
