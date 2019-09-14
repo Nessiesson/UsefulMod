@@ -14,6 +14,6 @@ public abstract class MixinEntity {
 
 	@Redirect(method = "isInRangeToRender3d", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/Entity;isInRangeToRenderDist(D)Z"))
 	private boolean alwaysRenderTileEntities(Entity entity, double distance) {
-		return LiteModUsefulMod.config.alwaysRenderTileEntities || this.isInRangeToRenderDist(distance);
+		return LiteModUsefulMod.config.alwaysRenderEntities || this.isInRangeToRenderDist(distance);
 	}
 }
