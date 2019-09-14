@@ -9,8 +9,6 @@ import com.mumfrey.liteloader.modconfig.ExposableOptions;
 @ExposableOptions(strategy = ConfigStrategy.Unversioned, filename = "usefulmod")
 public class Config implements Exposable {
 	@Expose
-	public boolean snapAim = false;
-	@Expose
 	public boolean shulkerBoxDisplay = false;
 	@Expose
 	public boolean deathLocation = false;
@@ -39,8 +37,6 @@ public class Config implements Exposable {
 	@Expose
 	public boolean alwaysSingleplayerCheats = false;
 	@Expose
-	public boolean showScoreboard = true;
-	@Expose
 	public boolean sortEnchantmentTooltip = false;
 	@Expose
 	public boolean insaneBlockBreakingParticles = false;
@@ -59,17 +55,11 @@ public class Config implements Exposable {
 	@Expose
 	public boolean showOneBossBar = false;
 	@Expose
-	public boolean noTimeout = false;
-	@Expose
 	public boolean craftingHax = false;
-	@Expose
-	public boolean noLight = false;
 	@Expose
 	public boolean stepAssist = false;
 	@Expose
 	public boolean flightInertiaCancellation = false;
-	@Expose
-	public boolean elytraHax = false;
 	@Expose
 	public boolean alwaysRenderTileEntities = false;
 	@Expose

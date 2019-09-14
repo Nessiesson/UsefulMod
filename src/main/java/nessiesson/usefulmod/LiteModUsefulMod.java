@@ -1,6 +1,7 @@
 package nessiesson.usefulmod;
 
 import com.mumfrey.liteloader.Configurable;
+import com.mumfrey.liteloader.PostRenderListener;
 import com.mumfrey.liteloader.Tickable;
 import com.mumfrey.liteloader.core.LiteLoader;
 import com.mumfrey.liteloader.modconfig.ConfigPanel;
@@ -22,7 +23,7 @@ import org.lwjgl.opengl.Display;
 
 import java.io.File;
 
-public class LiteModUsefulMod implements Tickable, Configurable {
+public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListener {
 	public static Config config = new Config();
 	public static KeyBinding highlightEntities = new KeyBinding("key.usefulmod.highlight_entities", Keyboard.KEY_LMENU, "UsefulMod");
 	private static KeyBinding reloadAudioEngineKey = new KeyBinding("key.usefulmod.reload_audio", Keyboard.KEY_B, "UsefulMod");
@@ -70,6 +71,11 @@ public class LiteModUsefulMod implements Tickable, Configurable {
 	}
 
 	@Override
+	public void onPostRenderEntities(float partialTicks) {
+		AreaSelectionRenderer.render(partialTicks);
+	}
+
+	@Override
 	public String getName() {
 		return "@NAME@";
 	}
@@ -86,6 +92,11 @@ public class LiteModUsefulMod implements Tickable, Configurable {
 
 	@Override
 	public void upgradeSettings(String version, File configPath, File oldConfigPath) {
+		// noop
+	}
+
+	@Override
+	public void onPostRender(float partialTicks) {
 		// noop
 	}
 }
