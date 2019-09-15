@@ -17,6 +17,7 @@
 		"MixinCommandBase",
 		"MixinEntityItem",
 		"MixinEntityPlayerSP",
+		"MixinEntityRenderer",
 		"MixinGameSettings",
 		"MixinGlStateManager",
 		"MixinGuiBossOverlay",
