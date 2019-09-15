@@ -40,7 +40,7 @@ public abstract class MixinPlayerControllerMP {
 		if (LiteModUsefulMod.config.extendedExtendedReachHax) {
 			cir.setReturnValue(8F);
 		} else if(LiteModUsefulMod.config.extendedReachHax) {
-			cir.setReturnValue(4F);
+			cir.setReturnValue(5F);
 		}
 	}
 }
