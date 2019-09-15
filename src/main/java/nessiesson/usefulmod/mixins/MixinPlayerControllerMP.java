@@ -34,4 +34,11 @@ public abstract class MixinPlayerControllerMP {
 	private int postBlockMine(int blockHitDelay) {
 		return LiteModUsefulMod.config.clickBlockMining ? 0 : 5;
 	}
+
+	@Inject(method = "getBlockReachDistance", at = @At("HEAD"), cancellable = true)
+	private void onGetBlockReachDistance(CallbackInfoReturnable<Float> cir) {
+		if (LiteModUsefulMod.config.extendedReachHax) {
+			cir.setReturnValue(5F);
+		}
+	}
 }
