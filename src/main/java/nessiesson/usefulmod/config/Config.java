@@ -66,6 +66,8 @@ public class Config implements Exposable {
 	public boolean alwaysRenderEntities = false;
 	@Expose
 	public boolean extendedReachHax = false;
+	@Expose
+	public boolean extendedExtendedReachHax = false;
 
 	public Config() {
 		LiteLoader.getInstance().registerExposable(this, null);
