@@ -38,7 +38,7 @@ public abstract class MixinPlayerControllerMP {
 	@Inject(method = "getBlockReachDistance", at = @At("HEAD"), cancellable = true)
 	private void onGetBlockReachDistance(CallbackInfoReturnable<Float> cir) {
 		if (LiteModUsefulMod.config.extendedReachHax) {
-			cir.setReturnValue(5F);
+			cir.setReturnValue(8F);
 		}
 	}
 }
