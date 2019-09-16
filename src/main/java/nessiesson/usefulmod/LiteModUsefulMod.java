@@ -1,6 +1,8 @@
 package nessiesson.usefulmod;
 
+import com.mojang.realmsclient.dto.RealmsServer;
 import com.mumfrey.liteloader.Configurable;
+import com.mumfrey.liteloader.JoinGameListener;
 import com.mumfrey.liteloader.PostRenderListener;
 import com.mumfrey.liteloader.Tickable;
 import com.mumfrey.liteloader.core.LiteLoader;
@@ -10,9 +12,12 @@ import nessiesson.usefulmod.config.GuiConfig;
 import nessiesson.usefulmod.mixins.ISoundHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.multiplayer.ServerData;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
+import net.minecraft.network.INetHandler;
 import net.minecraft.network.play.client.CPacketPlayer;
+import net.minecraft.network.play.server.SPacketJoinGame;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
@@ -23,7 +28,7 @@ import org.lwjgl.opengl.Display;
 
 import java.io.File;
 
-public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListener {
+public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListener, JoinGameListener {
 	public static Config config = new Config();
 	public static KeyBinding highlightEntities = new KeyBinding("key.usefulmod.highlight_entities", Keyboard.KEY_LMENU, "UsefulMod");
 	private static KeyBinding reloadAudioEngineKey = new KeyBinding("key.usefulmod.reload_audio", Keyboard.KEY_B, "UsefulMod");
@@ -33,7 +38,7 @@ public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListe
 	public void init(File configPath) {
 		LiteLoader.getInput().registerKeyBinding(highlightEntities);
 		LiteLoader.getInput().registerKeyBinding(reloadAudioEngineKey);
-		Display.setTitle(Display.getTitle() + " - " + Minecraft.getMinecraft().getSession().getUsername());
+		this.updateTitle();
 	}
 
 	@Override
@@ -70,9 +75,18 @@ public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListe
 		Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(message);
 	}
 
+	private void updateTitle() {
+		Display.setTitle(Display.getTitle() + " - " + Minecraft.getMinecraft().getSession().getUsername());
+	}
+
 	@Override
 	public void onPostRenderEntities(float partialTicks) {
 		AreaSelectionRenderer.render(partialTicks);
+	}
+
+	@Override
+	public void onJoinGame(INetHandler netHandler, SPacketJoinGame joinGamePacket, ServerData serverData, RealmsServer realmsServer) {
+		this.updateTitle();
 	}
 
 	@Override
