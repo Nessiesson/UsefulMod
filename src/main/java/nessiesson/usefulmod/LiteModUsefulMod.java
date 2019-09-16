@@ -33,11 +33,13 @@ public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListe
 	public static KeyBinding highlightEntities = new KeyBinding("key.usefulmod.highlight_entities", Keyboard.KEY_LMENU, "UsefulMod");
 	private static KeyBinding reloadAudioEngineKey = new KeyBinding("key.usefulmod.reload_audio", Keyboard.KEY_B, "UsefulMod");
 	private StepAssistHelper stepAssistHelper = new StepAssistHelper();
+	private String originalTitle;
 
 	@Override
 	public void init(File configPath) {
 		LiteLoader.getInput().registerKeyBinding(highlightEntities);
 		LiteLoader.getInput().registerKeyBinding(reloadAudioEngineKey);
+		this.originalTitle = Display.getTitle();
 		this.updateTitle();
 	}
 
@@ -76,7 +78,7 @@ public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListe
 	}
 
 	private void updateTitle() {
-		Display.setTitle(Display.getTitle() + " - " + Minecraft.getMinecraft().getSession().getUsername());
+		Display.setTitle(this.originalTitle + " - " + Minecraft.getMinecraft().getSession().getUsername());
 	}
 
 	@Override
