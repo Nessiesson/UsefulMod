@@ -9,7 +9,7 @@ class StepAssistHelper {
 	}
 
 	private float getStepAmount(EntityPlayer player) {
-		if(LiteModUsefulMod.config.stepAssist) {
+		if (LiteModUsefulMod.config.stepAssist) {
 			return player.isSneaking() ? 0.9F : 1.5F;
 		}
 

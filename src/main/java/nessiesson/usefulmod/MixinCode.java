@@ -49,7 +49,7 @@ public class MixinCode {
 		}
 	}
 
-	public static void handleHaxCrafting(int id) {
+	public static void handleHaxCrafting() {
 		if (!LiteModUsefulMod.config.craftingHax) {
 			return;
 		}
@@ -57,6 +57,7 @@ public class MixinCode {
 		final Minecraft mc = Minecraft.getMinecraft();
 		final PlayerControllerMP controller = mc.playerController;
 		final EntityPlayerSP player = mc.player;
+		final int id = player.openContainer.windowId;
 		if (GuiScreen.isShiftKeyDown() && GuiScreen.isCtrlKeyDown()) {
 			if (GuiScreen.isAltKeyDown()) {
 				controller.windowClick(id, 0, 1, ClickType.THROW, player);

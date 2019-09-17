@@ -20,7 +20,7 @@ public class AreaSelectionRenderer {
 		}
 
 		final GuiChat chat = (GuiChat) mc.currentScreen;
-		final String msg = ((IGuiChat)chat).getInputField().getText().trim();
+		final String msg = ((IGuiChat) chat).getInputField().getText().trim();
 		final String[] args = msg.split(" ");
 		if (args.length == 0) {
 			return;
