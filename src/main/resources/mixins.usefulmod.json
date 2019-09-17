@@ -22,7 +22,6 @@
 		"MixinGlStateManager",
 		"MixinGuiBossOverlay",
 		"MixinGuiChat",
-		"MixinGuiRecipeBook",
 		"MixinGuiScreen",
 		"MixinItemStack",
 		"MixinMinecraft",

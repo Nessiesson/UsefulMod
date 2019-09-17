@@ -1,10 +1,13 @@
 package nessiesson.usefulmod.mixins;
 
 import nessiesson.usefulmod.LiteModUsefulMod;
+import nessiesson.usefulmod.MixinCode;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerControllerMP;
 import net.minecraft.client.network.NetHandlerPlayClient;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraft.network.play.client.CPacketPlayerTryUseItemOnBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
@@ -14,6 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerControllerMP.class)
@@ -42,5 +46,10 @@ public abstract class MixinPlayerControllerMP {
 		} else if(LiteModUsefulMod.config.extendedReachHax) {
 			cir.setReturnValue(5F);
 		}
+	}
+
+	@Inject(method = "func_194338_a", at = @At("RETURN"))
+	private void craftingHax(int window, IRecipe recipe, boolean makeAll, EntityPlayer player, CallbackInfo ci) {
+		MixinCode.handleHaxCrafting(window);
 	}
 }

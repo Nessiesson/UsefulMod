@@ -13,8 +13,8 @@ buildscript {
 apply plugin: "net.minecraftforge.gradle.liteloader"
 apply plugin: "org.spongepowered.mixin"
 
-version = "1.0.1"
-def mcVersion = "1.12"
+version = "1.0.2"
+def mcVersion = "1.12.2"
 def modName = "UsefulMod".toString()
 def modId = modName.toLowerCase()
 group = "nessiesson.$modId"
