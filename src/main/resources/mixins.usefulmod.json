@@ -29,6 +29,7 @@
 		"MixinParticleDigging",
 		"MixinParticleManager",
 		"MixinPlayerControllerMP",
+		"MixinReauthCraftingHaxFix",
 		"MixinRenderGlobal",
 		"MixinRenderManager",
 		"MixinServerListEntryNormal",
