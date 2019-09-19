@@ -37,6 +37,7 @@
 		"MixinSpectatorMenu",
 		"MixinTeleportToPlayer",
 		"MixinTileEntityBeaconRenderer",
-		"MixinTileEntityRendererDispatcher"
+		"MixinTileEntityRendererDispatcher",
+		"MixinWorldClient"
 	]
 }
