@@ -24,9 +24,4 @@ public abstract class MixinRenderGlobal {
 			cir.setReturnValue((entityIn instanceof EntityLivingBase || entityIn instanceof EntityMinecart) && (entityIn.ignoreFrustumCheck || camera.isBoundingBoxInFrustum(entityIn.getEntityBoundingBox()) || entityIn.isRidingOrBeingRiddenBy(player)));
 		}
 	}
-
-	@Redirect(method = "renderEntities", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/entity/RenderManager;shouldRender(Lnet/minecraft/entity/Entity;Lnet/minecraft/client/renderer/culling/ICamera;DDD)Z"))
-	private boolean alwaysRenderTileEntities(RenderManager manager, Entity entity, ICamera camera, double camX, double camY, double camZ) {
-		return LiteModUsefulMod.config.alwaysRenderEntities || manager.shouldRender(entity, camera, camX, camY, camZ);
-	}
 }
