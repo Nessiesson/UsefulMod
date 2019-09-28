@@ -70,6 +70,8 @@ public class Config implements Exposable {
 	public boolean extendedExtendedReachHax = false;
 	@Expose
 	public boolean clientEntityUpdates = true;
+	@Expose
+	public boolean showRain = true;
 
 	public Config() {
 		LiteLoader.getInstance().registerExposable(this, null);

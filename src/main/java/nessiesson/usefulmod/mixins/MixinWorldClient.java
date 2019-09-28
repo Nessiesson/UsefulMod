@@ -25,4 +25,9 @@ public abstract class MixinWorldClient extends World {
 			super.updateEntity(entity);
 		}
 	}
+
+	@Override
+	public float getRainStrength(float delta) {
+		return LiteModUsefulMod.config.showRain ? this.prevRainingStrength + (this.rainingStrength - this.prevRainingStrength) * delta : 0F;
+	}
 }
