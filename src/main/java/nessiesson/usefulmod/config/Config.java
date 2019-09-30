@@ -72,6 +72,8 @@ public class Config implements Exposable {
 	public boolean clientEntityUpdates = true;
 	@Expose
 	public boolean showRain = true;
+	@Expose
+	public boolean showHand = true;
 
 	public Config() {
 		LiteLoader.getInstance().registerExposable(this, null);
