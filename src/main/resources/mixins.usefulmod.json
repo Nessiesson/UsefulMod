@@ -4,6 +4,7 @@
 	"refmap": "mixins.usefulmod.refmap.json",
 	"mixinPriority": 999,
 	"mixins": [
+		"EntityMixin",
 		"IEntityBeacon",
 		"IGuiChat",
 		"INBTTagList",
