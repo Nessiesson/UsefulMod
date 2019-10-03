@@ -31,7 +31,6 @@
 		"MixinParticleDigging",
 		"MixinParticleManager",
 		"MixinPlayerControllerMP",
-		"MixinRender",
 		"MixinRenderGlobal",
 		"MixinRenderManager",
 		"MixinServerListEntryNormal",

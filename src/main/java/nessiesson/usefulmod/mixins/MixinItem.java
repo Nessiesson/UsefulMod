@@ -16,9 +16,6 @@ import java.util.Map;
 
 @Mixin(Item.class)
 public abstract class MixinItem {
-	@Shadow
-	public abstract void addPropertyOverride(ResourceLocation key, IItemPropertyGetter getter);
-
 	private static final IItemPropertyGetter PERFECT_SILK_GETTER = (stack, worldIn, entityIn) -> {
 		final Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(stack);
 		return map.containsKey(Enchantments.EFFICIENCY) && map.get(Enchantments.EFFICIENCY) == 5
@@ -26,7 +23,6 @@ public abstract class MixinItem {
 				&& map.containsKey(Enchantments.SILK_TOUCH)
 				&& map.containsKey(Enchantments.MENDING) ? 1F : 0F;
 	};
-
 	private static final IItemPropertyGetter PERFECT_FORTUNE_GETTER = (stack, worldIn, entityIn) -> {
 		final Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(stack);
 		return map.containsKey(Enchantments.EFFICIENCY) && map.get(Enchantments.EFFICIENCY) == 5
@@ -34,6 +30,9 @@ public abstract class MixinItem {
 				&& map.containsKey(Enchantments.UNBREAKING) && map.get(Enchantments.UNBREAKING) == 3
 				&& map.containsKey(Enchantments.MENDING) ? 1F : 0F;
 	};
+
+	@Shadow
+	public abstract void addPropertyOverride(ResourceLocation key, IItemPropertyGetter getter);
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void addCustomOverrrides(CallbackInfo ci) {

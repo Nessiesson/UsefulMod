@@ -63,8 +63,6 @@ public class Config implements Exposable {
 	@Expose
 	public boolean alwaysRenderTileEntities = false;
 	@Expose
-	public boolean alwaysRenderEntities = false;
-	@Expose
 	public boolean extendedReachHax = false;
 	@Expose
 	public boolean extendedExtendedReachHax = false;

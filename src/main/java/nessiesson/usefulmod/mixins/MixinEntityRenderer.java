@@ -18,7 +18,7 @@ public abstract class MixinEntityRenderer {
 
 	@Inject(method = "renderHand", at = @At("HEAD"), cancellable = true)
 	private void hideHand(float partialTicks, int pass, CallbackInfo ci) {
-		if(!LiteModUsefulMod.config.showHand) {
+		if (!LiteModUsefulMod.config.showHand) {
 			ci.cancel();
 		}
 	}
