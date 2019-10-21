@@ -15,8 +15,6 @@ public class Config implements Exposable {
 	@Expose
 	public boolean miningGhostBlockFix = false;
 	@Expose
-	public boolean clickBlockMining = false;
-	@Expose
 	public boolean centeredPlants = false;
 	@Expose
 	public boolean clearLava = false;
@@ -62,10 +60,6 @@ public class Config implements Exposable {
 	public boolean flightInertiaCancellation = false;
 	@Expose
 	public boolean alwaysRenderTileEntities = false;
-	@Expose
-	public boolean extendedReachHax = false;
-	@Expose
-	public boolean extendedExtendedReachHax = false;
 	@Expose
 	public boolean clientEntityUpdates = true;
 	@Expose

@@ -29,18 +29,4 @@ public abstract class MixinPlayerControllerMP {
 			}
 		}
 	}
-
-	@ModifyConstant(method = "onPlayerDamageBlock", constant = @Constant(intValue = 5, ordinal = 1))
-	private int postBlockMine(int blockHitDelay) {
-		return LiteModUsefulMod.config.clickBlockMining ? 0 : 5;
-	}
-
-	@Inject(method = "getBlockReachDistance", at = @At("HEAD"), cancellable = true)
-	private void onGetBlockReachDistance(CallbackInfoReturnable<Float> cir) {
-		if (LiteModUsefulMod.config.extendedExtendedReachHax) {
-			cir.setReturnValue(8F);
-		} else if (LiteModUsefulMod.config.extendedReachHax) {
-			cir.setReturnValue(5F);
-		}
-	}
 }
