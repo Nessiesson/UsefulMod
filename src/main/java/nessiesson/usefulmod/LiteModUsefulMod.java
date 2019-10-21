@@ -5,6 +5,7 @@ import com.mumfrey.liteloader.Configurable;
 import com.mumfrey.liteloader.JoinGameListener;
 import com.mumfrey.liteloader.PostRenderListener;
 import com.mumfrey.liteloader.Tickable;
+import com.mumfrey.liteloader.client.gui.GuiCheckbox;
 import com.mumfrey.liteloader.core.LiteLoader;
 import com.mumfrey.liteloader.modconfig.ConfigPanel;
 import nessiesson.usefulmod.config.Config;
@@ -27,6 +28,11 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
 import java.io.File;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 
 public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListener, JoinGameListener {
 	public static Config config = new Config();
@@ -34,9 +40,20 @@ public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListe
 	private static KeyBinding reloadAudioEngineKey = new KeyBinding("key.usefulmod.reload_audio", Keyboard.KEY_B, "UsefulMod");
 	private StepAssistHelper stepAssistHelper = new StepAssistHelper();
 	private String originalTitle;
+	private List<KeyBinding> keybinds = new ArrayList<>();
 
 	@Override
 	public void init(File configPath) {
+		final List<Field> fields = Arrays.asList(Config.class.getFields());
+		fields.sort(Comparator.comparing(Field::getName));
+		for (Field f : fields) {
+			keybinds.add(new KeyBinding(f.getName(), Keyboard.KEY_NONE, "UsefulMod"));
+		}
+
+		for (KeyBinding key : this.keybinds) {
+			LiteLoader.getInput().registerKeyBinding(key);
+		}
+
 		LiteLoader.getInput().registerKeyBinding(highlightEntities);
 		LiteLoader.getInput().registerKeyBinding(reloadAudioEngineKey);
 		this.originalTitle = Display.getTitle();
@@ -47,6 +64,18 @@ public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListe
 	public void onTick(Minecraft minecraft, float partialTicks, boolean inGame, boolean clock) {
 		if (!inGame) {
 			return;
+		}
+
+		for(KeyBinding key : this.keybinds) {
+			if(key.isPressed()) {
+				try {
+					final Field field = Config.class.getField(key.getKeyDescription());
+					System.out.println(field);
+					field.setBoolean(config, !field.getBoolean(config));
+				} catch (NoSuchFieldException | IllegalAccessException ignored) {
+					// noop
+				}
+			}
 		}
 
 		if (reloadAudioEngineKey.isKeyDown()) {
