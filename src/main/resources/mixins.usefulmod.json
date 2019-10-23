@@ -18,6 +18,7 @@
 		"MixinEntityItem",
 		"MixinEntityPlayerSP",
 		"MixinEntityRenderer",
+		"MixinEntityRenderer$Predicate",
 		"MixinGameSettings",
 		"MixinGlStateManager",
 		"MixinGuiBossOverlay",
