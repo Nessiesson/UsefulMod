@@ -15,6 +15,7 @@
 		"MixinBlockSnow",
 		"MixinClientBrandRetriever",
 		"MixinCommandBase",
+		"MixinDebugRendererChunkBorder",
 		"MixinEntityItem",
 		"MixinEntityPlayerSP",
 		"MixinEntityRenderer",
