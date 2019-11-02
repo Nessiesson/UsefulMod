@@ -27,6 +27,10 @@ public abstract class MixinNetHandlerPlayerClient {
 	@Redirect(method = "handleTimeUpdate", at = @At(value = "INVOKE", target = "Lnet/minecraft/network/play/server/SPacketTimeUpdate;getWorldTime()J"))
 	private long alwaysDay(SPacketTimeUpdate packet) {
 		final long time = packet.getWorldTime();
-		return time >= 0 ? -(time - time % 24000L + 6000L) : time;
+		if(LiteModUsefulMod.config.alwaysDay) {
+			return time >= 0 ? -(time - time % 24000L + 6000L) : time;
+		}
+
+		return time;
 	}
 }

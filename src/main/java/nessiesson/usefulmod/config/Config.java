@@ -68,6 +68,8 @@ public class Config implements Exposable {
 	public boolean showHand = true;
 	@Expose
 	public boolean showExplosion = false;
+	@Expose
+	public boolean alwaysDay = false;
 
 	public Config() {
 		LiteLoader.getInstance().registerExposable(this, null);
