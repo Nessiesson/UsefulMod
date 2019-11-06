@@ -57,6 +57,8 @@ public class Config implements Exposable {
 	@Expose
 	public boolean stepAssist = false;
 	@Expose
+	public boolean unstepAssist = false;
+	@Expose
 	public boolean flightInertiaCancellation = false;
 	@Expose
 	public boolean alwaysRenderTileEntities = false;
