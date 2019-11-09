@@ -17,7 +17,7 @@ version = "1.0.3"
 
 def mcVersion
 if(!project.hasProperty("mcVersion")) {
-	mcVersion = "1.12.1"
+	mcVersion = "1.12.2"
 } else{
 	mcVersion = project.getProperty("mcVersion")
 }
