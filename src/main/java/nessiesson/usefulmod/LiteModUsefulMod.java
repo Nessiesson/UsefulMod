@@ -5,7 +5,6 @@ import com.mumfrey.liteloader.Configurable;
 import com.mumfrey.liteloader.JoinGameListener;
 import com.mumfrey.liteloader.PostRenderListener;
 import com.mumfrey.liteloader.Tickable;
-import com.mumfrey.liteloader.client.gui.GuiCheckbox;
 import com.mumfrey.liteloader.core.LiteLoader;
 import com.mumfrey.liteloader.modconfig.ConfigPanel;
 import nessiesson.usefulmod.config.Config;
@@ -70,7 +69,6 @@ public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListe
 			if(key.isPressed()) {
 				try {
 					final Field field = Config.class.getField(key.getKeyDescription());
-					System.out.println(field);
 					field.setBoolean(config, !field.getBoolean(config));
 				} catch (NoSuchFieldException | IllegalAccessException ignored) {
 					// noop

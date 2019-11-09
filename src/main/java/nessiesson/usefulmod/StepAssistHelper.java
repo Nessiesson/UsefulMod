@@ -18,7 +18,7 @@ class StepAssistHelper {
 	}
 
 	private void stepDown(EntityPlayer player) {
-		if (!LiteModUsefulMod.config.unstepAssist && !wasOnGround && player.onGround && player.motionY > 0D) {
+		if (!LiteModUsefulMod.config.unstepAssist || !wasOnGround || player.onGround || player.motionY > 0D) {
 			return;
 		}
 
