@@ -13,7 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class MixinRainbowLeafBlockColors {
 	@Inject(method = "colorMultiplier(Lnet/minecraft/block/state/IBlockState;Lnet/minecraft/world/IBlockAccess;Lnet/minecraft/util/math/BlockPos;I)I", at = @At("HEAD"), cancellable = true)
 	private void rainbowLeaves(IBlockState state, IBlockAccess world, BlockPos pos, int tintIndex, CallbackInfoReturnable<Integer> cir) {
-		if (!LiteModUsefulMod.config.showRainbowLeaves) {
+		if (!LiteModUsefulMod.config.showRainbowLeaves || pos == null) {
 			return;
 		}
 
