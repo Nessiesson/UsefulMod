@@ -1,3 +1,4 @@
-start gradlew -PmcVersion="1.12"   build
-start gradlew -PmcVersion="1.12.1" build
-start gradlew -PmcVersion="1.12.2" build
+call gradlew -PmcVersion="1.12"   setupDecompWorkspace build
+call gradlew -PmcVersion="1.12.1" setupDecompWorkspace build
+call gradlew -PmcVersion="1.12.2" setupDecompWorkspace build
+pause
