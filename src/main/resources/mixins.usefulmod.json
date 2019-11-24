@@ -33,6 +33,7 @@
 		"MixinParticleDigging",
 		"MixinParticleManager",
 		"MixinPlayerControllerMP",
+		"MixinRainbowLeafBlockColors",
 		"MixinRenderGlobal",
 		"MixinRenderManager",
 		"MixinServerListEntryNormal",
