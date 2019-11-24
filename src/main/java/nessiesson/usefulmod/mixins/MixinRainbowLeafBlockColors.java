@@ -17,19 +17,19 @@ public abstract class MixinRainbowLeafBlockColors {
 			return;
 		}
 
-		int red = pos.getX() * 32 + pos.getY() * 16;
+		int red = pos.getX() * 16 + pos.getY() * 8;
 		if ((red & 256) != 0) {
 			red = 255 - (red & 255);
 		}
 		red &= 255;
 
-		int blue = pos.getY() * 32 + pos.getZ() * 16;
+		int blue = pos.getY() * 16 + pos.getZ() * 8;
 		if ((blue & 256) != 0) {
 			blue = 255 - (blue & 255);
 		}
 		blue ^= 255;
 
-		int green = pos.getX() * 16 + pos.getZ() * 32;
+		int green = pos.getX() * 8 + pos.getZ() * 16;
 		if ((green & 256) != 0) {
 			green = 255 - (green & 255);
 		}
