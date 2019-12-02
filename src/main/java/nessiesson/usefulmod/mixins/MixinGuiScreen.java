@@ -28,6 +28,7 @@ public abstract class MixinGuiScreen {
 
 	/**
 	 * @author nessie
+	 * @reason Simplest way to inject
 	 */
 	@Overwrite
 	public void sendChatMessage(String msg) {
