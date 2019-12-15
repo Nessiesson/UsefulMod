@@ -30,7 +30,6 @@
 		"MixinItemStack",
 		"MixinMinecraft",
 		"MixinNetHandlerPlayerClient",
-		"MixinNetworkManager",
 		"MixinParticleDigging",
 		"MixinParticleManager",
 		"MixinPlayerControllerMP",

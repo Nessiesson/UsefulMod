@@ -74,6 +74,8 @@ public class Config implements Exposable {
 	public boolean alwaysDay = false;
 	@Expose
 	public boolean showRainbowLeaves = false;
+	@Expose
+	public boolean alwaysPickBlockMaxStack = false;
 
 	public Config() {
 		LiteLoader.getInstance().registerExposable(this, null);
