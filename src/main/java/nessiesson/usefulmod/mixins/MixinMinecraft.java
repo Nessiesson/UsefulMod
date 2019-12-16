@@ -18,7 +18,7 @@ public abstract class MixinMinecraft implements IThreadListener, ISnooperInfo {
 		// noop
 	}
 
-	@ModifyVariable(method = "middleClickMouse", ordinal = 0, index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/PlayerControllerMP;sendSlotPacket(Lnet/minecraft/item/ItemStack;I)V"), print = true)
+	@ModifyVariable(method = "middleClickMouse", ordinal = 0, index = 3, at = @At(value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/PlayerControllerMP;sendSlotPacket(Lnet/minecraft/item/ItemStack;I)V"))
 	private ItemStack maxStackSize(ItemStack stack) {
 		if (LiteModUsefulMod.config.alwaysPickBlockMaxStack) {
 			stack.setCount(stack.getMaxStackSize());
