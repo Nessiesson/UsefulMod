@@ -42,7 +42,6 @@
 		"MixinSpectatorMenu",
 		"MixinTeleportToPlayer",
 		"MixinTileEntityBeaconRenderer",
-		"MixinTileEntityChestRenderer",
 		"MixinTileEntityPistonRenderer",
 		"MixinTileEntityRendererDispatcher",
 		"MixinWorldClient"
