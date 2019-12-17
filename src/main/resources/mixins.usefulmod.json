@@ -35,6 +35,7 @@
 		"MixinPlayerControllerMP",
 		"MixinRainbowLeafBlockColors",
 		"MixinRenderGlobal",
+		"MixinRenderItemFrame",
 		"MixinRenderManager",
 		"MixinServerListEntryNormal",
 		"MixinShulkerBoxDisplayRenderer",
