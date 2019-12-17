@@ -16,6 +16,9 @@ public abstract class MixinRenderItemFrame {
 	@Shadow
 	protected abstract void renderItem(EntityItemFrame entity);
 
+	@Shadow
+	protected abstract void renderName(EntityItemFrame entity, double x, double y, double z);
+
 	@Inject(method = "doRender", at = @At("HEAD"), cancellable = true)
 	private void onDoRender(EntityItemFrame entity, double x, double y, double z, float yaw, float partialTicks, CallbackInfo ci) {
 		if (!LiteModUsefulMod.config.showItemFrameFrame) {
@@ -30,6 +33,7 @@ public abstract class MixinRenderItemFrame {
 			GlStateManager.translate(0F, 0F, 0.4375F);
 			this.renderItem(entity);
 			GlStateManager.popMatrix();
+			this.renderName(entity, x + entity.facingDirection.getXOffset() * 0.3D, y - 0.25D, z + entity.facingDirection.getZOffset() * 0.3D);
 		}
 	}
 }
