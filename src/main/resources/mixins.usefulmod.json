@@ -17,6 +17,7 @@
 		"MixinCommandBase",
 		"MixinDebugRendererChunkBorder",
 		"MixinEntityItem",
+		"MixinEntityItemFrame",
 		"MixinEntityPlayerSP",
 		"MixinEntityRenderer",
 		"MixinEntityRenderer$Predicate",
