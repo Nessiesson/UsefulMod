@@ -78,6 +78,8 @@ public class Config implements Exposable {
 	public boolean alwaysPickBlockMaxStack = false;
 	@Expose
 	public boolean showItemFrameFrame = true;
+	@Expose
+	public boolean clickBlockMining = false;
 
 	public Config() {
 		LiteLoader.getInstance().registerExposable(this, null);

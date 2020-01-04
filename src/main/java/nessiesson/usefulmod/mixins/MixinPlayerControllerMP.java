@@ -11,7 +11,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Constant;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerControllerMP.class)
@@ -31,5 +33,10 @@ public abstract class MixinPlayerControllerMP {
 			final NetHandlerPlayClient connection = Minecraft.getMinecraft().getConnection();
 			connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(pos, face, EnumHand.MAIN_HAND, 0F, 0F, 0F));
 		}
+	}
+
+	@ModifyConstant(method = "onPlayerDamageBlock", constant = @Constant(intValue = 5, ordinal = 1))
+	private int postBlockMine(int blockHitDelay) {
+		return LiteModUsefulMod.config.clickBlockMining ? 0 : 5;
 	}
 }
