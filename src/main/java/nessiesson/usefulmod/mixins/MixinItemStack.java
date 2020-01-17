@@ -18,7 +18,7 @@ public abstract class MixinItemStack {
 
 	@Redirect(method = "getTooltip", at = @At(value = "INVOKE", target = "Lcom/google/common/collect/Multimap;isEmpty()Z", remap = false))
 	private boolean noAttributes(Multimap multimap) {
-		return LiteModUsefulMod.config.showItemAttributes || multimap.isEmpty() || !Minecraft.getMinecraft().gameSettings.advancedItemTooltips;
+		return !LiteModUsefulMod.config.showItemAttributes || multimap.isEmpty() || !Minecraft.getMinecraft().gameSettings.advancedItemTooltips;
 	}
 
 	@Redirect(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getEnchantmentTagList()Lnet/minecraft/nbt/NBTTagList;"))
