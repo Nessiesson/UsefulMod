@@ -30,6 +30,22 @@ public abstract class MixinItem {
 				&& map.containsKey(Enchantments.UNBREAKING) && map.get(Enchantments.UNBREAKING) == 3
 				&& map.containsKey(Enchantments.MENDING) ? 1F : 0F;
 	};
+	private static final IItemPropertyGetter PERFECT_SILK_AXE_GETTER = (stack, worldIn, entityIn) -> {
+		final Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(stack);
+		return map.containsKey(Enchantments.SHARPNESS) && map.get(Enchantments.SHARPNESS) == 5
+				&& map.containsKey(Enchantments.EFFICIENCY) && map.get(Enchantments.EFFICIENCY) == 5
+				&& map.containsKey(Enchantments.UNBREAKING) && map.get(Enchantments.UNBREAKING) == 3
+				&& map.containsKey(Enchantments.SILK_TOUCH)
+				&& map.containsKey(Enchantments.MENDING) ? 1F : 0F;
+	};
+	private static final IItemPropertyGetter PERFECT_FORTUNE_AXE_GETTER = (stack, worldIn, entityIn) -> {
+		final Map<Enchantment, Integer> map = EnchantmentHelper.getEnchantments(stack);
+		return map.containsKey(Enchantments.SHARPNESS) && map.get(Enchantments.SHARPNESS) == 5
+				&& map.containsKey(Enchantments.EFFICIENCY) && map.get(Enchantments.EFFICIENCY) == 5
+				&& map.containsKey(Enchantments.FORTUNE) && map.get(Enchantments.FORTUNE) == 3
+				&& map.containsKey(Enchantments.UNBREAKING) && map.get(Enchantments.UNBREAKING) == 3
+				&& map.containsKey(Enchantments.MENDING) ? 1F : 0F;
+	};
 
 	@Shadow
 	public abstract void addPropertyOverride(ResourceLocation key, IItemPropertyGetter getter);
@@ -38,5 +54,7 @@ public abstract class MixinItem {
 	private void addCustomOverrrides(CallbackInfo ci) {
 		this.addPropertyOverride(new ResourceLocation("perfect_silk"), PERFECT_SILK_GETTER);
 		this.addPropertyOverride(new ResourceLocation("perfect_fortune"), PERFECT_FORTUNE_GETTER);
+		this.addPropertyOverride(new ResourceLocation("perfect_silk_axe"), PERFECT_SILK_AXE_GETTER);
+		this.addPropertyOverride(new ResourceLocation("perfect_fortune_axe"), PERFECT_FORTUNE_AXE_GETTER);
 	}
 }
