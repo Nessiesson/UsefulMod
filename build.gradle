@@ -13,12 +13,12 @@ buildscript {
 apply plugin: "net.minecraftforge.gradle.liteloader"
 apply plugin: "org.spongepowered.mixin"
 
-version = "1.0.5"
+version = "1.0.6"
 
 def mcVersion
-if(!project.hasProperty("mcVersion")) {
+if (!project.hasProperty("mcVersion")) {
 	mcVersion = "1.12.2"
-} else{
+} else {
 	mcVersion = project.getProperty("mcVersion")
 }
 println mcVersion
@@ -49,6 +49,8 @@ litemod.json {
 	mcversion = mcVersion
 	description = "A very UsefulMod."
 	mixinConfigs += "mixins.${modId}.json".toString()
+	mixinConfigs += "mixins.${modId}.optifine.json".toString()
+	mixinConfigs += "mixins.clientcommands.json".toString()
 }
 
 jar {
