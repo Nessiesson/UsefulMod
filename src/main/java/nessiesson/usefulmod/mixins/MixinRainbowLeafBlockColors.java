@@ -5,6 +5,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
@@ -24,6 +25,7 @@ public abstract class MixinRainbowLeafBlockColors {
 		cir.setReturnValue(Color.HSBtoRGB(hue, 0.7F, 1F));
 	}
 
+	@Unique
 	private float dist(int x, int y, int z) {
 		return (float) Math.sqrt(x * x + y * y + z * z);
 	}
