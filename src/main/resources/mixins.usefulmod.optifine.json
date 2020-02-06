@@ -1,0 +1,10 @@
+{
+	"required": true,
+	"package": "nessiesson.usefulmod.mixins",
+	"refmap": "mixins.usefulmod.refmap.json",
+	"minVersion": "0.7.3",
+	"plugin": "nessiesson.usefulmod.mixins.OptifinePlugin",
+	"mixins": [
+		"MixinRenderChunkOptifine"
+	]
+}

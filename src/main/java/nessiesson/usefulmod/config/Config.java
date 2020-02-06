@@ -80,6 +80,8 @@ public class Config implements Exposable {
 	public boolean showItemFrameFrame = true;
 	@Expose
 	public boolean clickBlockMining = false;
+	@Expose
+	public boolean smoothPistonOptifineStopBlink = false;
 
 	public Config() {
 		LiteLoader.getInstance().registerExposable(this, null);
