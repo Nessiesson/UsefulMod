@@ -75,8 +75,6 @@ public class Config implements Exposable {
 	@Expose
 	public boolean smoothItemMovement = false;
 	@Expose
-	public boolean smoothPistonOptifineStopBlink = false;
-	@Expose
 	public boolean sortEnchantmentTooltip = false;
 	@Expose
 	public boolean stepAssist = false;
