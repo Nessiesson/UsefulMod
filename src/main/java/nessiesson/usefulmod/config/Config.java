@@ -82,6 +82,8 @@ public class Config implements Exposable {
 	public boolean unstepAssist = false;
 	@Expose
 	public boolean lessBlinkyPistonCanGhostBlock = false;
+	@Expose
+	public boolean showIdealToolMarker = false;
 
 	public Config() {
 		LiteLoader.getInstance().registerExposable(this, null);
