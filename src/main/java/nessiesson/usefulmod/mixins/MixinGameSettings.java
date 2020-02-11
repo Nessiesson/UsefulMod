@@ -1,8 +1,7 @@
 package nessiesson.usefulmod.mixins;
 
-import nessiesson.usefulmod.MixinCode;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
-import org.apache.commons.lang3.tuple.Pair;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -19,20 +18,41 @@ public abstract class MixinGameSettings {
 	public abstract float getOptionFloatValue(GameSettings.Options settingOption);
 
 	@Inject(method = "setOptionFloatValue", at = @At("HEAD"), cancellable = true)
-	private void overrideGammaValue(GameSettings.Options settingsOption, float value, CallbackInfo ci) {
-		Pair<Boolean, Float> pair = MixinCode.onSetOptionFloatValue(settingsOption, value);
-		if (pair.getLeft()) {
-			ci.cancel();
+	private void overrideGammaValue(GameSettings.Options option, float value, CallbackInfo ci) {
+		if (option != GameSettings.Options.GAMMA) {
+			return;
 		}
 
-		this.gammaSetting = pair.getRight();
+		if (value >= 0.95F) {
+			value = 1000F;
+		} else if (value >= 0.9F) {
+			value = 1F;
+		} else {
+			value = Math.min(1F, value / 0.9F);
+		}
+
+		this.gammaSetting = value;
 	}
 
 	@Inject(method = "getKeyBinding", at = @At("HEAD"), cancellable = true)
 	private void overrideGammaText(GameSettings.Options option, CallbackInfoReturnable<String> cir) {
-		Pair<Boolean, String> pair = MixinCode.renderBrightnessText(option, this.getOptionFloatValue(option));
-		if (pair.getLeft()) {
-			cir.setReturnValue(pair.getRight());
+		if (option != GameSettings.Options.GAMMA) {
+			return;
 		}
+
+		cir.cancel();
+		final float f = this.getOptionFloatValue(option);
+		String s = I18n.format(option.getTranslation() + ": ");
+		if (f > 1F) {
+			s += I18n.format("usefulmod.options.gamma.fullbright");
+		} else if (f > 0.95F) {
+			s += I18n.format("options.gamma.max");
+		} else if (f > 0F) {
+			s += "+" + (int) (f * 100.0F) + "%";
+		} else {
+			s += I18n.format("options.gamma.min");
+		}
+
+		cir.setReturnValue(s);
 	}
 }

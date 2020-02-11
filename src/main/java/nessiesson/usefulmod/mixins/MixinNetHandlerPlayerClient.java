@@ -1,7 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
 import nessiesson.usefulmod.LiteModUsefulMod;
-import nessiesson.usefulmod.MixinCode;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -13,6 +12,9 @@ import net.minecraft.network.play.server.SPacketTimeUpdate;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityPiston;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.event.ClickEvent;
 import org.apache.logging.log4j.Logger;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -30,9 +32,17 @@ public abstract class MixinNetHandlerPlayerClient {
 
 	@Inject(method = "handleCombatEvent", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/Minecraft;displayGuiScreen(Lnet/minecraft/client/gui/GuiScreen;)V"))
 	private void sendDeathLocation(SPacketCombatEvent packetIn, CallbackInfo ci) {
-		MixinCode.sendDeathLocation();
 		if (LiteModUsefulMod.config.respawnOnDeath) {
 			Minecraft.getMinecraft().player.respawnPlayer();
+		}
+
+		if (LiteModUsefulMod.config.deathLocation) {
+			final Minecraft mc = Minecraft.getMinecraft();
+			final BlockPos pos = mc.player.getPosition();
+			final String formatted = String.format("You died @ %d %d %d", pos.getX(), pos.getY(), pos.getZ());
+			final ITextComponent message = new TextComponentString(formatted);
+			message.getStyle().setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, formatted));
+			mc.ingameGUI.getChatGUI().printChatMessage(message);
 		}
 	}
 
