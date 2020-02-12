@@ -81,9 +81,11 @@ public abstract class MixinRenderItem {
 		} else if (item instanceof ItemElytra && this.isPerfectBasicToolBase(map)) {
 			marker = "P";
 		} else if (item instanceof ItemFirework && stack.hasTagCompound()) {
-			NBTTagCompound itemData = stack.getTagCompound();
-			NBTTagCompound fireworks = itemData.getCompoundTag("Fireworks");
-			marker = String.valueOf(fireworks.getByte("Flight"));
+			final NBTTagCompound itemData = stack.getTagCompound();
+			if (itemData != null) {
+				final NBTTagCompound fireworks = itemData.getCompoundTag("Fireworks");
+				marker = String.valueOf(fireworks.getByte("Flight"));
+			}
 		} else if (item instanceof ItemFlintAndSteel && this.isPerfectBasicToolBase(map)) {
 			marker = "P";
 		} else if (item instanceof ItemHoe && this.isPerfectHoe(map)) {
