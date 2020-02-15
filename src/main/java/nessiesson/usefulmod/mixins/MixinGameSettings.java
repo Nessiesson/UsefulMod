@@ -42,7 +42,7 @@ public abstract class MixinGameSettings {
 
 		cir.cancel();
 		final float f = this.getOptionFloatValue(option);
-		String s = I18n.format(option.getTranslation() + ": ");
+		String s = I18n.format(option.getTranslation()) + ": ";
 		if (f > 1F) {
 			s += I18n.format("usefulmod.options.gamma.fullbright");
 		} else if (f > 0.95F) {
