@@ -31,6 +31,7 @@ public abstract class MixinGameSettings {
 			value = Math.min(1F, value / 0.9F);
 		}
 
+		ci.cancel();
 		this.gammaSetting = value;
 	}
 
@@ -48,7 +49,7 @@ public abstract class MixinGameSettings {
 		} else if (f > 0.95F) {
 			s += I18n.format("options.gamma.max");
 		} else if (f > 0F) {
-			s += "+" + (int) (f * 100.0F) + "%";
+			s += "+" + (int) (f * 100F) + "%";
 		} else {
 			s += I18n.format("options.gamma.min");
 		}
