@@ -21,7 +21,7 @@ public abstract class MixinRenderItemFrame {
 
 	@Inject(method = "doRender", at = @At("HEAD"), cancellable = true)
 	private void onDoRender(EntityItemFrame entity, double x, double y, double z, float yaw, float partialTicks, CallbackInfo ci) {
-		if (!LiteModUsefulMod.config.showItemFrameFrame) {
+		if (entity.facingDirection != null && !LiteModUsefulMod.config.showItemFrameFrame) {
 			ci.cancel();
 			final BlockPos blockpos = entity.getHangingPosition();
 			final double dX = (double) blockpos.getX() - entity.posX + x + 0.5D;

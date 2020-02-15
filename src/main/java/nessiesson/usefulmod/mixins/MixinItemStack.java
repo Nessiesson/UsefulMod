@@ -3,6 +3,7 @@ package nessiesson.usefulmod.mixins;
 import com.google.common.collect.Multimap;
 import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.client.Minecraft;
+import net.minecraft.entity.ai.attributes.AttributeModifier;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
@@ -23,8 +24,8 @@ public abstract class MixinItemStack {
 	public abstract NBTTagList getEnchantmentTagList();
 
 	@Redirect(method = "getTooltip", at = @At(value = "INVOKE", target = "Lcom/google/common/collect/Multimap;isEmpty()Z", remap = false))
-	private boolean noAttributes(Multimap multimap) {
-		return !LiteModUsefulMod.config.showItemAttributes || multimap.isEmpty() || !Minecraft.getMinecraft().gameSettings.advancedItemTooltips;
+	private boolean noAttributes(Multimap<String, AttributeModifier> map) {
+		return !LiteModUsefulMod.config.showItemAttributes || map.isEmpty() || !Minecraft.getMinecraft().gameSettings.advancedItemTooltips;
 	}
 
 	@Redirect(method = "getTooltip", at = @At(value = "INVOKE", target = "Lnet/minecraft/item/ItemStack;getEnchantmentTagList()Lnet/minecraft/nbt/NBTTagList;"))

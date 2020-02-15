@@ -33,9 +33,7 @@ public abstract class MixinRenderGlobal {
 		}
 	}
 
-	@Redirect(method = "playEvent",
-			at = @At(ordinal = 0, value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/WorldClient;playSound(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/SoundEvent;Lnet/minecraft/util/SoundCategory;FFZ)V"),
-			slice = @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;getSoundType()Lnet/minecraft/block/SoundType;")))
+	@Redirect(method = "playEvent", at = @At(ordinal = 0, value = "INVOKE", target = "Lnet/minecraft/client/multiplayer/WorldClient;playSound(Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/util/SoundEvent;Lnet/minecraft/util/SoundCategory;FFZ)V"), slice = @Slice(from = @At(value = "INVOKE", target = "Lnet/minecraft/block/Block;getSoundType()Lnet/minecraft/block/SoundType;")))
 	private void noBreakSound(WorldClient worldClient, BlockPos pos, SoundEvent soundIn, SoundCategory category, float volume, float pitch, boolean distanceDelay) {
 		if (!LiteModUsefulMod.config.showExplosion) {
 			worldClient.playSound(pos, soundIn, category, volume, pitch, distanceDelay);

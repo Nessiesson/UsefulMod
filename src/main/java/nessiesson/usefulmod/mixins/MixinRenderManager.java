@@ -19,6 +19,7 @@ public abstract class MixinRenderManager {
 		if (LiteModUsefulMod.config.showDeathAnimation || !(entity instanceof EntityLivingBase)) {
 			return;
 		}
+
 		final EntityLivingBase mob = (EntityLivingBase) entity;
 		if (mob.deathTime > 0) {
 			ci.cancel();
@@ -27,7 +28,7 @@ public abstract class MixinRenderManager {
 
 	@Inject(method = "shouldRender", at = @At("HEAD"), cancellable = true)
 	private void hideFireworksWhenRidden(Entity entity, ICamera camera, double camX, double camY, double camZ, CallbackInfoReturnable<Boolean> cir) {
-		if(entity instanceof EntityFireworkRocket && ((EntityFireworkRocket)entity).isAttachedToEntity()) {
+		if (entity instanceof EntityFireworkRocket && ((EntityFireworkRocket) entity).isAttachedToEntity()) {
 			cir.setReturnValue(false);
 		}
 	}

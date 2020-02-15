@@ -21,12 +21,12 @@ public abstract class MixinRainbowLeafBlockColors {
 		}
 
 		final int sc = 1024;
-		final float hue = this.dist(pos.getX(), 32 * pos.getY(), pos.getX() + pos.getZ()) % sc / sc;
+		final float hue = this.usefulModDist(pos.getX(), 32 * pos.getY(), pos.getX() + pos.getZ()) % sc / sc;
 		cir.setReturnValue(Color.HSBtoRGB(hue, 0.7F, 1F));
 	}
 
 	@Unique
-	private float dist(int x, int y, int z) {
+	private float usefulModDist(int x, int y, int z) {
 		return (float) Math.sqrt(x * x + y * y + z * z);
 	}
 }

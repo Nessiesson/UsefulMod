@@ -26,7 +26,7 @@ public abstract class MixinDebugRendererChunkBorder {
 			player = mc.getRenderViewEntity();
 		}
 
-		if(player == null) {
+		if (player == null) {
 			return;
 		}
 

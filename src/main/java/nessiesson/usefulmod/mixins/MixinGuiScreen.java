@@ -16,10 +16,7 @@ public abstract class MixinGuiScreen {
 	@Shadow
 	public abstract void sendChatMessage(String msg, boolean addToChat);
 
-	@Inject(method = "handleInput", at = {
-			@At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiScreen;handleKeyboardInput()V"),
-			@At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiScreen;handleMouseInput()V")},
-			cancellable = true)
+	@Inject(method = "handleInput", at = {@At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiScreen;handleKeyboardInput()V"), @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiScreen;handleMouseInput()V")}, cancellable = true)
 	private void mc31222(CallbackInfo ci) {
 		if ((GuiScreen) (Object) this != Minecraft.getMinecraft().currentScreen) {
 			ci.cancel();

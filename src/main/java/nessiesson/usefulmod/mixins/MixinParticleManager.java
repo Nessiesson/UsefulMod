@@ -27,17 +27,15 @@ public abstract class MixinParticleManager {
 			return;
 		}
 
-		if (LiteModUsefulMod.config.showExplosion) {
-			if (this.world instanceof WorldClient) {
-				((WorldClient) this.world).playSound(pos, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4F, (1.0F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F, false);
-				final float f = this.world.rand.nextFloat();
-				if (f <= 0.5F) {
-					this.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, pos.getX(), pos.getY(), pos.getZ(), 1D, 0D, 0D);
-				} else if (f <= 0.85F) {
-					this.world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, pos.getX(), pos.getY(), pos.getZ(), 0D, 0D, 0D);
-				} else {
-					this.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, pos.getX(), pos.getY(), pos.getZ(), 0D, 0D, 0D);
-				}
+		if (LiteModUsefulMod.config.showExplosion && this.world instanceof WorldClient) {
+			((WorldClient) this.world).playSound(pos, SoundEvents.ENTITY_GENERIC_EXPLODE, SoundCategory.BLOCKS, 4F, (1F + (this.world.rand.nextFloat() - this.world.rand.nextFloat()) * 0.2F) * 0.7F, false);
+			final float f = this.world.rand.nextFloat();
+			if (f <= 0.5F) {
+				this.world.spawnParticle(EnumParticleTypes.EXPLOSION_NORMAL, pos.getX(), pos.getY(), pos.getZ(), 1D, 0D, 0D);
+			} else if (f <= 0.85F) {
+				this.world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, pos.getX(), pos.getY(), pos.getZ(), 0D, 0D, 0D);
+			} else {
+				this.world.spawnParticle(EnumParticleTypes.EXPLOSION_HUGE, pos.getX(), pos.getY(), pos.getZ(), 0D, 0D, 0D);
 			}
 		}
 	}
