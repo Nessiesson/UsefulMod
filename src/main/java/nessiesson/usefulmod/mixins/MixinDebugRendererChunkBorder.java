@@ -22,6 +22,7 @@ public abstract class MixinDebugRendererChunkBorder {
 	public void render(float partialTicks, long finishTimeNano) {
 		final Minecraft mc = Minecraft.getMinecraft();
 		Entity player = mc.player;
+
 		if (((EntityPlayerSP) player).isSpectator()) {
 			player = mc.getRenderViewEntity();
 		}
