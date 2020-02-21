@@ -40,7 +40,7 @@ public abstract class MixinPlayerControllerMP {
 		}
 	}
 
-	@ModifyConstant(method = "onPlayerDamageBlock", constant = @Constant(intValue = 5, ordinal = 1))
+	@ModifyConstant(method = "onPlayerDamageBlock", constant = @Constant(intValue = 5))
 	private int postBlockMine(int blockHitDelay) {
 		return LiteModUsefulMod.config.clickBlockMining ? 0 : 5;
 	}
