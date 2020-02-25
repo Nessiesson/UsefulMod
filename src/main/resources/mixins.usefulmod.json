@@ -28,6 +28,7 @@
 		"MixinGuiChat",
 		"MixinGuiRecipeBook",
 		"MixinGuiScreen",
+		"MixinInventoryEffectRenderer",
 		"MixinItemStack",
 		"MixinMinecraft",
 		"MixinNetHandlerPlayerClient",
