@@ -10,6 +10,7 @@
 		"ISoundHandler",
 		"MixinBlock",
 		"MixinBlockConcretePowder",
+		"MixinBlockDragonEgg",
 		"MixinBlockPistonBase",
 		"MixinBlockShulkerBox",
 		"MixinBlockSnow",
