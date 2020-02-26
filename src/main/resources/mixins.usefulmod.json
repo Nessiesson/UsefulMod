@@ -10,6 +10,7 @@
 		"MixinBlock",
 		"MixinBlockConcretePowder",
 		"MixinBlockDragonEgg",
+		"MixinBlockLiquid",
 		"MixinBlockPistonBase",
 		"MixinBlockShulkerBox",
 		"MixinBlockSnow",
