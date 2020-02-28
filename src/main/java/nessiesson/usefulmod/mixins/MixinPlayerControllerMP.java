@@ -20,19 +20,19 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(PlayerControllerMP.class)
 public abstract class MixinPlayerControllerMP {
 	@Unique
-	final private static String onInstantMine = "Lnet/minecraft/client/multiplayer/PlayerControllerMP;onPlayerDestroyBlock(Lnet/minecraft/util/math/BlockPos;)Z";
+	final private static String usefulmodOnInstantMine = "Lnet/minecraft/client/multiplayer/PlayerControllerMP;onPlayerDestroyBlock(Lnet/minecraft/util/math/BlockPos;)Z";
 	@Unique
-	float usefulModBlockHardness;
+	float usefulmodBlockHardness;
 
-	@Inject(method = "clickBlock", at = @At(value = "INVOKE", target = onInstantMine, shift = At.Shift.BEFORE))
+	@Inject(method = "clickBlock", at = @At(value = "INVOKE", target = usefulmodOnInstantMine, shift = At.Shift.BEFORE))
 	private void preInstantMine(BlockPos pos, EnumFacing face, CallbackInfoReturnable<Boolean> cir) {
 		final World world = Minecraft.getMinecraft().world;
-		this.usefulModBlockHardness = world.getBlockState(pos).getBlockHardness(world, pos);
+		this.usefulmodBlockHardness = world.getBlockState(pos).getBlockHardness(world, pos);
 	}
 
-	@Inject(method = "clickBlock", at = @At(value = "INVOKE", target = onInstantMine, shift = At.Shift.AFTER))
+	@Inject(method = "clickBlock", at = @At(value = "INVOKE", target = usefulmodOnInstantMine, shift = At.Shift.AFTER))
 	private void postInstantMine(BlockPos pos, EnumFacing face, CallbackInfoReturnable<Boolean> cir) {
-		if (LiteModUsefulMod.config.miningGhostBlockFix && this.usefulModBlockHardness > 0F) {
+		if (LiteModUsefulMod.config.miningGhostBlockFix && this.usefulmodBlockHardness > 0F) {
 			final NetHandlerPlayClient connection = Minecraft.getMinecraft().getConnection();
 			if (connection != null) {
 				connection.sendPacket(new CPacketPlayerTryUseItemOnBlock(pos, face, EnumHand.MAIN_HAND, 0F, 0F, 0F));
