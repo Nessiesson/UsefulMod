@@ -86,6 +86,8 @@ public class Config implements Exposable {
 	public boolean showIdealToolMarker = false;
 	@Expose
 	public boolean showPotionShift = true;
+	@Expose
+	public boolean smoothWaterLighting = false;
 
 	public Config() {
 		LiteLoader.getInstance().registerExposable(this, null);
