@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-@Mixin(value = {GuiScreen.class, GuiContainerCreative.class})
+@Mixin({GuiContainerCreative.class, GuiScreen.class})
 public abstract class MixinShulkerBoxDisplayRenderer extends Gui {
 	@Inject(method = "renderToolTip", at = @At(value = "RETURN"))
 	private void postRenderToolTip(ItemStack stack, int x, int y, CallbackInfo ci) {
