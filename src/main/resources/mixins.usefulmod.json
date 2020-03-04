@@ -4,6 +4,7 @@
 	"minVersion": "0.7.3",
 	"mixins": [
 		"IEntityBeacon",
+		"IEntityRenderer",
 		"IGuiChat",
 		"INBTTagList",
 		"ISoundHandler",

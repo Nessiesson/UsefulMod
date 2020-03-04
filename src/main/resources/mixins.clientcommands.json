@@ -1,0 +1,10 @@
+{
+	"package": "nessiesson.usefulmod.ClientCommands.mixins",
+	"refmap": "mixins.usefulmod.refmap.json",
+	"minVersion": "0.7.3",
+	"mixins": [
+		"IKeybinding",
+		"MixinGuiScreen",
+		"MixinTabCompleter"
+	]
+}

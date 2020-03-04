@@ -7,12 +7,16 @@ import com.mumfrey.liteloader.PostRenderListener;
 import com.mumfrey.liteloader.Tickable;
 import com.mumfrey.liteloader.core.LiteLoader;
 import com.mumfrey.liteloader.modconfig.ConfigPanel;
+import nessiesson.usefulmod.ClientCommands.ClientCommandHandler;
 import nessiesson.usefulmod.config.Config;
 import nessiesson.usefulmod.config.GuiConfig;
 import nessiesson.usefulmod.mixins.ISoundHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiMainMenu;
 import net.minecraft.client.multiplayer.ServerData;
+import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.settings.GameSettings;
 import net.minecraft.client.settings.KeyBinding;
 import net.minecraft.network.INetHandler;
@@ -23,6 +27,8 @@ import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
@@ -34,12 +40,15 @@ import java.util.Comparator;
 import java.util.List;
 
 public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListener, JoinGameListener {
-	public static Config config = new Config();
-	public static KeyBinding highlightEntities = new KeyBinding("key.usefulmod.highlight_entities", Keyboard.KEY_LMENU, "UsefulMod");
-	private static KeyBinding reloadAudioEngineKey = new KeyBinding("key.usefulmod.reload_audio", Keyboard.KEY_B, "UsefulMod");
-	private StepAssistHelper stepAssistHelper = new StepAssistHelper();
+	public static final Config config = new Config();
+	public static final Logger log = LogManager.getLogger();
+	public static final List<TimedKeyBinding> tapeMouseable = new ArrayList<>();
+	public static final KeyBinding highlightEntities = new KeyBinding("key.usefulmod.highlight_entities", Keyboard.KEY_LMENU, "UsefulMod");
+	public static final Blur blur = new Blur();
+	private static final KeyBinding reloadAudioEngineKey = new KeyBinding("key.usefulmod.reload_audio", Keyboard.KEY_B, "UsefulMod");
+	private static final StepAssistHelper stepAssistHelper = new StepAssistHelper();
+	private static final List<KeyBinding> keybinds = new ArrayList<>();
 	private String originalTitle;
-	private List<KeyBinding> keybinds = new ArrayList<>();
 
 	@Override
 	public void init(File configPath) {
@@ -49,7 +58,7 @@ public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListe
 			keybinds.add(new KeyBinding(f.getName(), Keyboard.KEY_NONE, "UsefulMod"));
 		}
 
-		for (KeyBinding key : this.keybinds) {
+		for (KeyBinding key : keybinds) {
 			LiteLoader.getInput().registerKeyBinding(key);
 		}
 
@@ -57,43 +66,56 @@ public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListe
 		LiteLoader.getInput().registerKeyBinding(reloadAudioEngineKey);
 		this.originalTitle = Display.getTitle();
 		this.updateTitle();
+		ClientCommandHandler.instance.registerCommand(new CommandTapeMouse());
 	}
 
 	@Override
-	public void onTick(Minecraft minecraft, float partialTicks, boolean inGame, boolean clock) {
+	public void onTick(Minecraft mc, float partialTicks, boolean inGame, boolean clock) {
 		if (!inGame) {
 			return;
 		}
 
-		for(KeyBinding key : this.keybinds) {
-			if(key.isPressed()) {
+		for (KeyBinding key : keybinds) {
+			if (key.isPressed()) {
 				try {
 					final Field field = Config.class.getField(key.getKeyDescription());
-					field.setBoolean(config, !field.getBoolean(config));
+					final boolean state = !field.getBoolean(config);
+					field.setBoolean(config, state);
+					mc.ingameGUI.setOverlayMessage(String.format("%s %s.", field.getName(), state ? "enabled" : "disabled"), false);
 				} catch (NoSuchFieldException | IllegalAccessException ignored) {
 					// noop
 				}
 			}
 		}
 
-		if (reloadAudioEngineKey.isKeyDown()) {
-			((ISoundHandler) minecraft.getSoundHandler()).getSoundManager().reloadSoundSystem();
+		if (reloadAudioEngineKey.isPressed()) {
+			((ISoundHandler) mc.getSoundHandler()).getSoundManager().reloadSoundSystem();
 			this.debugFeedBack();
 		}
 
-		final EntityPlayerSP player = minecraft.player;
+		final EntityPlayerSP player = mc.player;
 		if (config.noFall && player.fallDistance > 2F) {
 			player.connection.sendPacket(new CPacketPlayer(true));
 		}
 
 		if (LiteModUsefulMod.config.flightInertiaCancellation && player.capabilities.isFlying) {
-			final GameSettings settings = minecraft.gameSettings;
+			final GameSettings settings = mc.gameSettings;
 			if (!(GameSettings.isKeyDown(settings.keyBindForward) || GameSettings.isKeyDown(settings.keyBindBack) || GameSettings.isKeyDown(settings.keyBindLeft) || GameSettings.isKeyDown(settings.keyBindRight))) {
 				player.motionX = player.motionZ = 0;
 			}
 		}
 
 		stepAssistHelper.update(player);
+
+		if (!tapeMouseable.isEmpty()) {
+			if (mc.currentScreen instanceof GuiMainMenu) {
+				this.drawStringInCorner("TM paused");
+			} else {
+				for (TimedKeyBinding key : tapeMouseable) {
+					this.drawStringInCorner(String.format("%s %d / %d\n", key.getKeyDescription().replaceFirst("^key\\.", ""), key.currentTick, key.tickDelay));
+				}
+			}
+		}
 	}
 
 	private void debugFeedBack() {
@@ -102,6 +124,14 @@ public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListe
 		tag.setStyle(new Style().setColor(TextFormatting.YELLOW).setBold(true));
 		final ITextComponent message = new TextComponentString("").appendSibling(tag).appendText(" ").appendSibling(text);
 		Minecraft.getMinecraft().ingameGUI.getChatGUI().printChatMessage(message);
+	}
+
+	private void drawStringInCorner(String msg) {
+		final FontRenderer font = Minecraft.getMinecraft().fontRenderer;
+		GlStateManager.pushMatrix();
+		GlStateManager.scale(0.5, 0.5, 0.5);
+		font.drawString(msg, 5, 5, 0xFFFFFF, true);
+		GlStateManager.popMatrix();
 	}
 
 	private void updateTitle() {
