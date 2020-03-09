@@ -30,7 +30,7 @@ public abstract class MixinBlockSnow extends Block {
 				final double x = pos.getX() + rand.nextDouble();
 				final double y = pos.getY() - 1.05;
 				final double z = pos.getZ() + rand.nextDouble();
-				world.spawnParticle(EnumParticleTypes.END_ROD, x, y, z, 0.0, -0.06, 0.0);
+				world.spawnParticle(EnumParticleTypes.END_ROD, x, y, z, 0D, -0.06, 0D);
 			}
 		}
 	}
