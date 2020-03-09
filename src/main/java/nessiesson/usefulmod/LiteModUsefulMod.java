@@ -27,8 +27,6 @@ import net.minecraft.util.text.Style;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
 
@@ -41,10 +39,8 @@ import java.util.List;
 
 public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListener, JoinGameListener {
 	public static final Config config = new Config();
-	public static final Logger log = LogManager.getLogger();
 	public static final List<TimedKeyBinding> tapeMouseable = new ArrayList<>();
 	public static final KeyBinding highlightEntities = new KeyBinding("key.usefulmod.highlight_entities", Keyboard.KEY_LMENU, "UsefulMod");
-	public static final Blur blur = new Blur();
 	private static final KeyBinding reloadAudioEngineKey = new KeyBinding("key.usefulmod.reload_audio", Keyboard.KEY_B, "UsefulMod");
 	private static final StepAssistHelper stepAssistHelper = new StepAssistHelper();
 	private static final List<KeyBinding> keybinds = new ArrayList<>();
@@ -106,7 +102,6 @@ public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListe
 		}
 
 		stepAssistHelper.update(player);
-
 		if (!tapeMouseable.isEmpty()) {
 			if (mc.currentScreen instanceof GuiMainMenu) {
 				this.drawStringInCorner("TM paused");
@@ -144,7 +139,7 @@ public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListe
 	}
 
 	@Override
-	public void onJoinGame(INetHandler netHandler, SPacketJoinGame joinGamePacket, ServerData serverData, RealmsServer realmsServer) {
+	public void onJoinGame(INetHandler handler, SPacketJoinGame packet, ServerData data, RealmsServer realms) {
 		this.updateTitle();
 	}
 

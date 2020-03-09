@@ -9,7 +9,6 @@ import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.item.ItemStack;
 import net.minecraft.profiler.ISnooperInfo;
 import net.minecraft.util.IThreadListener;
-import org.spongepowered.asm.lib.Opcodes;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -51,10 +50,5 @@ public abstract class MixinMinecraft implements IThreadListener, ISnooperInfo {
 		for (TimedKeyBinding key : LiteModUsefulMod.tapeMouseable) {
 			key.tick();
 		}
-	}
-
-	@Inject(method = "displayGuiScreen", at = @At(value = "FIELD", target = "Lnet/minecraft/client/Minecraft;currentScreen:Lnet/minecraft/client/gui/GuiScreen;", opcode = Opcodes.PUTFIELD))
-	private void onScreenChange(GuiScreen screen, CallbackInfo ci) {
-		LiteModUsefulMod.blur.onScreenChange(screen);
 	}
 }
