@@ -11,6 +11,6 @@ public class MixinGlStateManager {
 	@ModifyVariable(method = "setFogDensity", at = @At("HEAD"), argsOnly = true)
 	private static float adjustFogDensity(float fogDensity) {
 		// In vanilla code, this method is only called with fogdensity = 2F when in lava.
-		return fogDensity == 2F && LiteModUsefulMod.config.clearLava ? 0F : fogDensity;
+		return fogDensity == 2F && LiteModUsefulMod.config.showClearLava ? 0F : fogDensity;
 	}
 }

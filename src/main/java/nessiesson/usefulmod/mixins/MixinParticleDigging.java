@@ -17,7 +17,7 @@ public abstract class MixinParticleDigging extends Particle {
 
 	@Inject(method = "<init>", at = @At("RETURN"))
 	private void removeRandomParticleMotion(CallbackInfo ci) {
-		if (LiteModUsefulMod.config.insaneBlockBreakingParticles) {
+		if (LiteModUsefulMod.config.showInsaneBlockBreakingParticles) {
 			final double multiplier = this.rand.nextFloat() * 5;
 			this.motionX *= multiplier;
 			this.motionY *= multiplier;

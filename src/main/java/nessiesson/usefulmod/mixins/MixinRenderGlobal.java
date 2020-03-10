@@ -42,7 +42,7 @@ public abstract class MixinRenderGlobal {
 
 	@Inject(method = "notifyBlockUpdate", at = @At("HEAD"), cancellable = true)
 	private void onNotifyBlockUpdate(World worldIn, BlockPos pos, IBlockState oldState, IBlockState newState, int flags, CallbackInfo ci) {
-		if (LiteModUsefulMod.config.lessBlinkyPistonCanGhostBlock && (oldState.getBlock() == Blocks.PISTON || oldState.getBlock() == Blocks.STICKY_PISTON) && flags != 11) {
+		if (LiteModUsefulMod.config.showLessBlinkyPistonCanGhostBlock && (oldState.getBlock() == Blocks.PISTON || oldState.getBlock() == Blocks.STICKY_PISTON) && flags != 11) {
 			ci.cancel();
 		}
 

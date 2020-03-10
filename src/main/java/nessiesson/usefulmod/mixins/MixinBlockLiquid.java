@@ -15,6 +15,6 @@ public abstract class MixinBlockLiquid extends Block {
 
 	@Override
 	public boolean isTranslucent(IBlockState state) {
-		return LiteModUsefulMod.config.smoothWaterLighting || super.isTranslucent(state);
+		return LiteModUsefulMod.config.showSmoothWaterLighting || super.isTranslucent(state);
 	}
 }

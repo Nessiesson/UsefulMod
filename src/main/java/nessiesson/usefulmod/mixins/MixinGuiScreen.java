@@ -1,6 +1,7 @@
 package nessiesson.usefulmod.mixins;
 
 import com.google.common.base.Splitter;
+import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiScreen;
 import org.spongepowered.asm.mixin.Mixin;
@@ -31,6 +32,13 @@ public abstract class MixinGuiScreen {
 	public void sendChatMessage(String msg) {
 		for (String message : Splitter.fixedLength(256).split(msg)) {
 			this.sendChatMessage(message, true);
+		}
+	}
+
+	@Inject(method = "drawWorldBackground", at = @At("HEAD"), cancellable = true)
+	private void onDrawBackground(int tint, CallbackInfo ci) {
+		if (!LiteModUsefulMod.config.showGuiBackGround) {
+			ci.cancel();
 		}
 	}
 }

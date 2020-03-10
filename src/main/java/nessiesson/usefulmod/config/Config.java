@@ -17,10 +17,6 @@ public class Config implements Exposable {
 	@Expose
 	public boolean alwaysSingleplayerCheats = false;
 	@Expose
-	public boolean centeredPlants = false;
-	@Expose
-	public boolean clearLava = false;
-	@Expose
 	public boolean clickBlockMining = false;
 	@Expose
 	public boolean clientEntityUpdates = true;
@@ -32,8 +28,6 @@ public class Config implements Exposable {
 	public boolean extendedChat = false;
 	@Expose
 	public boolean flightInertiaCancellation = false;
-	@Expose
-	public boolean insaneBlockBreakingParticles = false;
 	@Expose
 	public boolean instantDoubleRetraction = false;
 	@Expose
@@ -49,23 +43,39 @@ public class Config implements Exposable {
 	@Expose
 	public boolean showBlockBreakingParticles = true;
 	@Expose
+	public boolean showCenteredPlants = false;
+	@Expose
+	public boolean showClearLava = false;
+	@Expose
 	public boolean showDeathAnimation = true;
 	@Expose
 	public boolean showExplosion = false;
 	@Expose
+	public boolean showGuiBackGround = true;
+	@Expose
 	public boolean showHand = true;
+	@Expose
+	public boolean showIdealToolMarker = false;
+	@Expose
+	public boolean showInsaneBlockBreakingParticles = false;
 	@Expose
 	public boolean showItemAttributes = true;
 	@Expose
 	public boolean showItemFrameFrame = true;
 	@Expose
+	public boolean showLessBlinkyPistonCanGhostBlock = false;
+	@Expose
 	public boolean showOneBossBar = false;
+	@Expose
+	public boolean showPotionShift = true;
 	@Expose
 	public boolean showRain = true;
 	@Expose
 	public boolean showRainbowLeaves = false;
 	@Expose
 	public boolean showServerNames = true;
+	@Expose
+	public boolean showSmoothWaterLighting = false;
 	@Expose
 	public boolean showSnowDripParticles = false;
 	@Expose
@@ -80,14 +90,6 @@ public class Config implements Exposable {
 	public boolean stepAssist = false;
 	@Expose
 	public boolean unstepAssist = false;
-	@Expose
-	public boolean lessBlinkyPistonCanGhostBlock = false;
-	@Expose
-	public boolean showIdealToolMarker = false;
-	@Expose
-	public boolean showPotionShift = true;
-	@Expose
-	public boolean smoothWaterLighting = false;
 
 	public Config() {
 		LiteLoader.getInstance().registerExposable(this, null);

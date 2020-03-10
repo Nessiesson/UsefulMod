@@ -11,7 +11,7 @@ import java.util.Comparator;
 import java.util.List;
 
 public class GuiConfig extends AbstractConfigPanel {
-	public Config config = LiteModUsefulMod.config;
+	public final Config config = LiteModUsefulMod.config;
 
 	@Override
 	protected void addOptions(ConfigPanelHost host) {
@@ -26,9 +26,11 @@ public class GuiConfig extends AbstractConfigPanel {
 					try {
 						f.setBoolean(config, control.checked);
 					} catch (IllegalAccessException ignored) {
+						// noop
 					}
 				}).checked = f.getBoolean(config);
 			} catch (IllegalAccessException ignored) {
+				// noop
 			}
 		}
 	}

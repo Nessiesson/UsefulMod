@@ -16,7 +16,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 public abstract class MixinBlock {
 	@Inject(method = "getOffset", at = @At("HEAD"), cancellable = true)
 	private void onGetOffset(IBlockState state, IBlockAccess worldIn, BlockPos pos, CallbackInfoReturnable<Vec3d> cir) {
-		if (LiteModUsefulMod.config.centeredPlants) {
+		if (LiteModUsefulMod.config.showCenteredPlants) {
 			cir.setReturnValue(Vec3d.ZERO);
 		}
 	}
