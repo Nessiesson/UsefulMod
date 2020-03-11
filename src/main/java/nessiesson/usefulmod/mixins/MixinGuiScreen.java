@@ -35,7 +35,7 @@ public abstract class MixinGuiScreen {
 		}
 	}
 
-	@Inject(method = "drawWorldBackground", at = @At("HEAD"), cancellable = true)
+	@Inject(method = "drawWorldBackground", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiScreen;drawGradientRect(IIIIII)V"), cancellable = true)
 	private void onDrawBackground(int tint, CallbackInfo ci) {
 		if (!LiteModUsefulMod.config.showGuiBackGround) {
 			ci.cancel();
