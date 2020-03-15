@@ -2,6 +2,7 @@
 	"package": "nessiesson.usefulmod.mixins",
 	"refmap": "mixins.usefulmod.refmap.json",
 	"minVersion": "0.7.3",
+	"compatibilityLevel": "JAVA_8",
 	"mixins": [
 		"IEntityBeacon",
 		"IGuiChat",
@@ -27,6 +28,7 @@
 		"MixinGlStateManager",
 		"MixinGuiBossOverlay",
 		"MixinGuiChat",
+		"MixinGuiMainMenu",
 		"MixinGuiRecipeBook",
 		"MixinGuiScreen",
 		"MixinInventoryEffectRenderer",

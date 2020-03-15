@@ -7,7 +7,6 @@ import com.mumfrey.liteloader.PostRenderListener;
 import com.mumfrey.liteloader.Tickable;
 import com.mumfrey.liteloader.core.LiteLoader;
 import com.mumfrey.liteloader.modconfig.ConfigPanel;
-import nessiesson.usefulmod.ClientCommands.ClientCommandHandler;
 import nessiesson.usefulmod.config.Config;
 import nessiesson.usefulmod.config.GuiConfig;
 import nessiesson.usefulmod.mixins.ISoundHandler;
@@ -62,7 +61,7 @@ public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListe
 		LiteLoader.getInput().registerKeyBinding(reloadAudioEngineKey);
 		this.originalTitle = Display.getTitle();
 		this.updateTitle();
-		ClientCommandHandler.instance.registerCommand(new CommandTapeMouse());
+		//ClientCommandHandler.instance.registerCommand(new CommandTapeMouse());
 	}
 
 	@Override

@@ -3,6 +3,7 @@
 	"refmap": "mixins.usefulmod.refmap.json",
 	"minVersion": "0.7.3",
 	"plugin": "nessiesson.usefulmod.mixins.OptifinePlugin",
+	"compatibilityLevel": "JAVA_8",
 	"mixins": [
 		"MixinRenderChunkOptifine"
 	]

@@ -2,6 +2,7 @@
 	"package": "nessiesson.usefulmod.ClientCommands.mixins",
 	"refmap": "mixins.usefulmod.refmap.json",
 	"minVersion": "0.7.3",
+	"compatibilityLevel": "JAVA_8",
 	"mixins": [
 		"IKeybinding",
 		"MixinGuiScreen",
