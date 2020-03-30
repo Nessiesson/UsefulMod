@@ -49,7 +49,6 @@ litemod.json {
 	mcversion = mcVersion
 	description = "A very UsefulMod."
 	mixinConfigs += "mixins.${modId}.json".toString()
-	mixinConfigs += "mixins.${modId}.optifine.json".toString()
 	mixinConfigs += "mixins.clientcommands.json".toString()
 }
 
