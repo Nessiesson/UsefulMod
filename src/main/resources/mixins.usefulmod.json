@@ -18,7 +18,6 @@
 		"MixinBufferBuilder",
 		"MixinClientBrandRetriever",
 		"MixinCommandBase",
-		"MixinDebugRendererChunkBorder",
 		"MixinEntityItem",
 		"MixinEntityItemFrame",
 		"MixinEntityPlayerSP",
