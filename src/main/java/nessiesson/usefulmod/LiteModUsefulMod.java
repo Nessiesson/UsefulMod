@@ -89,7 +89,7 @@ public class LiteModUsefulMod implements Tickable, Configurable, PostRenderListe
 		}
 
 		final EntityPlayerSP player = mc.player;
-		if (config.noFall && player.fallDistance > 2F) {
+		if (config.noFall && player.fallDistance > 2F && !player.isElytraFlying()) {
 			player.connection.sendPacket(new CPacketPlayer(true));
 		}
 
