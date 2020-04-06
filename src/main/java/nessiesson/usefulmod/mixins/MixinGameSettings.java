@@ -1,5 +1,6 @@
 package nessiesson.usefulmod.mixins;
 
+import nessiesson.usefulmod.LiteModUsefulMod;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.client.settings.GameSettings;
 import org.spongepowered.asm.mixin.Mixin;
@@ -44,16 +45,17 @@ public abstract class MixinGameSettings {
 		cir.cancel();
 		final float f = this.getOptionFloatValue(option);
 		String s = I18n.format(option.getTranslation()) + ": ";
-		if (f > 1F) {
-			s += I18n.format("usefulmod.options.gamma.fullbright");
-		} else if (f > 0.95F) {
+		if (LiteModUsefulMod.config.fullBrightEnable) {
+			if (f > 1F) {
+				s += I18n.format("usefulmod.options.gamma.fullbright");
+			}
+		}if (f > 0.95F && f < 1F) {
 			s += I18n.format("options.gamma.max");
 		} else if (f > 0F) {
 			s += "+" + (int) (f * 100F) + "%";
 		} else {
 			s += I18n.format("options.gamma.min");
 		}
-
 		cir.setReturnValue(s);
 	}
 }
