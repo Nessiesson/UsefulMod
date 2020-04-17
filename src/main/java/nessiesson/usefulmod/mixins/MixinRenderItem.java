@@ -57,6 +57,7 @@ public abstract class MixinRenderItem {
 		return this.isPerfectBasicToolBase(stack)
 				&& EnchantmentHelper.getEnchantmentLevel(Enchantments.SHARPNESS, stack) == 5
 				&& EnchantmentHelper.getEnchantmentLevel(Enchantments.LOOTING, stack) == 3
+				&& EnchantmentHelper.getEnchantmentLevel(Enchantments.SWEEPING, stack) == 3
 				&& EnchantmentHelper.getEnchantmentLevel(Enchantments.FIRE_ASPECT, stack) == 2;
 	}
 
