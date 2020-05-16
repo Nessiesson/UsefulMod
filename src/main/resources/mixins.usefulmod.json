@@ -22,7 +22,7 @@
 		"MixinEntityItemFrame",
 		"MixinEntityPlayerSP",
 		"MixinEntityRenderer",
-		"MixinEntityRenderer$Predicate",
+		"MixinEntityRendererPredicate",
 		"MixinGameSettings",
 		"MixinGlStateManager",
 		"MixinGuiBossOverlay",
