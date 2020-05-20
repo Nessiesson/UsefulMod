@@ -28,6 +28,7 @@
 		"MixinGuiBossOverlay",
 		"MixinGuiChat",
 		"MixinGuiMainMenu",
+		"MixinGuiNewChat",
 		"MixinGuiRecipeBook",
 		"MixinGuiScreen",
 		"MixinInventoryEffectRenderer",
