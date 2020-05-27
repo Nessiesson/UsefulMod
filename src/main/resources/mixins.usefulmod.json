@@ -19,6 +19,7 @@
 		"MixinCommandBase",
 		"MixinEntityItem",
 		"MixinEntityItemFrame",
+		"MixinEntityLivingBase",
 		"MixinEntityPlayerSP",
 		"MixinEntityRenderer",
 		"MixinEntityRendererPredicate",
