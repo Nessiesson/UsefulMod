@@ -13,7 +13,7 @@ buildscript {
 apply plugin: "net.minecraftforge.gradle.liteloader"
 apply plugin: "org.spongepowered.mixin"
 
-version = "1.0.8"
+version = "1.0.9"
 
 def mcVersion
 if (!project.hasProperty("mcVersion")) {
