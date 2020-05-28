@@ -27,6 +27,7 @@
 		"MixinGlStateManager",
 		"MixinGuiBossOverlay",
 		"MixinGuiChat",
+		"MixinGuiLanguageList",
 		"MixinGuiMainMenu",
 		"MixinGuiNewChat",
 		"MixinGuiRecipeBook",
@@ -49,6 +50,7 @@
 		"MixinTeleportToPlayer",
 		"MixinTileEntityBeaconRenderer",
 		"MixinTileEntityPiston",
+		"MixinTileEntityPistonRenderer",
 		"MixinTileEntityRendererDispatcher",
 		"MixinWorldClient"
 	]

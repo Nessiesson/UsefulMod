@@ -77,6 +77,8 @@ public class Config implements Exposable {
 	@Expose
 	public boolean showSmoothWaterLighting = false;
 	@Expose
+	public boolean showSneakEyeHeight = false;
+	@Expose
 	public boolean showSnowDripParticles = false;
 	@Expose
 	public boolean showTeamMenu = true;
