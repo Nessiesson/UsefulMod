@@ -27,6 +27,8 @@ public class Config implements Exposable {
 	@Expose
 	public boolean extendedChat = false;
 	@Expose
+	public boolean fixBlock36Particles = false;
+	@Expose
 	public boolean flightInertiaCancellation = false;
 	@Expose
 	public boolean instantDoubleRetraction = false;
