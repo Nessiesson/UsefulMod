@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.Redirect;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
@@ -40,5 +41,10 @@ public abstract class MixinEntityRenderer {
 		}
 
 		GlStateManager.translate(x, y, z);
+	}
+
+	@ModifyVariable(method = "getFOVModifier", ordinal = 1, index = 4, name = "f", at = @At(value = "STORE", ordinal = 2))
+	private float fixedStaticFoV(float value) {
+		return LiteModUsefulMod.config.zzTempMasaFoVFix ? Minecraft.getMinecraft().gameSettings.fovSetting : value;
 	}
 }

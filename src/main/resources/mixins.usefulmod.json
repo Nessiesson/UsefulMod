@@ -8,6 +8,7 @@
 		"IGuiChat",
 		"INBTTagList",
 		"ISoundHandler",
+		"MixinBiome",
 		"MixinBlock",
 		"MixinBlockConcretePowder",
 		"MixinBlockLiquid",

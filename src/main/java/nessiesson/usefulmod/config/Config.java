@@ -94,6 +94,10 @@ public class Config implements Exposable {
 	public boolean stepAssist = false;
 	@Expose
 	public boolean unstepAssist = false;
+	@Expose
+	public boolean zzTempBlackSky = false;
+	@Expose
+	public boolean zzTempMasaFoVFix = false;
 
 	public Config() {
 		LiteLoader.getInstance().registerExposable(this, null);
