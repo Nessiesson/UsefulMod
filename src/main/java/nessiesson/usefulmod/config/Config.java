@@ -65,8 +65,6 @@ public class Config implements Exposable {
 	@Expose
 	public boolean showItemFrameFrame = true;
 	@Expose
-	public boolean showLessBlinkyPistonCanGhostBlock = false;
-	@Expose
 	public boolean showOneBossBar = false;
 	@Expose
 	public boolean showPotionShift = true;

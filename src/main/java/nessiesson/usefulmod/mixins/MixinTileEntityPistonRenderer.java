@@ -16,14 +16,14 @@ public abstract class MixinTileEntityPistonRenderer {
 	@Redirect(method = "render", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/GlStateManager;disableCull()V"))
 	private void cullMovingBlocks(TileEntityPiston te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
 		GlStateManager.enableCull();
-		final double f = 0.9997 + 0.0001D * te.getFacing().getIndex();
-		GlStateManager.scale(f, f, f);
+		GlStateManager.enablePolygonOffset();
+		GlStateManager.doPolygonOffset(-te.getFacing().getIndex() * 0.01F, 0.01F);
 	}
 
 	@Inject(method = "render", at = @At("RETURN"))
 	private void uncullMovingBlocks(TileEntityPiston te, double x, double y, double z, float partialTicks, int destroyStage, float alpha, CallbackInfo ci) {
 		GlStateManager.disableCull();
-		GlStateManager.scale(1D, 1D, 1D);
+		GlStateManager.disablePolygonOffset();
 	}
 
 	@ModifyConstant(method = "render", constant = @Constant(floatValue = 0.25F))
