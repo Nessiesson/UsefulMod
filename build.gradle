@@ -14,15 +14,7 @@ apply plugin: "net.minecraftforge.gradle.liteloader"
 apply plugin: "org.spongepowered.mixin"
 
 version = "1.0.9"
-
-def mcVersion
-if (!project.hasProperty("mcVersion")) {
-	mcVersion = "1.12.2"
-} else {
-	mcVersion = project.getProperty("mcVersion")
-}
-println mcVersion
-
+def mcVersion = "1.12.2"
 def modName = "UsefulMod".toString()
 def modId = modName.toLowerCase()
 group = "nessiesson.$modId"
