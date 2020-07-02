@@ -4,7 +4,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.boss.EntityWither;
-import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.world.World;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -36,7 +35,7 @@ public abstract class MixinEntityLivingBase extends Entity {
 
 	@Redirect(method = "onLivingUpdate", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/EntityLivingBase;setPosition(DDD)V"))
 	private void fixSquidAndWitherMovement(EntityLivingBase entity, double x, double y, double z) {
-		if (entity instanceof EntitySquid || entity instanceof EntityWither) {
+		if (entity instanceof EntityWither) {
 			entity.move(MoverType.SELF, this.usefulmodD0 - this.posX, this.usefulmodD1 - this.posY, this.usefulmodD2 - this.posZ);
 		} else {
 			entity.setPosition(x, y, z);
