@@ -2,7 +2,7 @@ buildscript {
 	repositories {
 		mavenCentral()
 		maven { url = "https://maven.minecraftforge.net" }
-	maven { url = "https://repo.spongepowered.org/repository/maven-public" }
+		maven { url = "https://repo.spongepowered.org/repository/maven-public" }
 	}
 	dependencies {
 		classpath "net.minecraftforge.gradle:ForgeGradle:2.3-SNAPSHOT"
